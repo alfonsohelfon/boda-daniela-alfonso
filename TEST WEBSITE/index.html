@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daniela y Alfonso | Los Cabos 2026</title>
+    <style>
+        /* --- FONT FACE DECLARATIONS --- */
+        @font-face {
+            font-family: 'Gelosa Cara';
+            src: url('GelosaCara-RegularCondensed.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Futura Light';
+            src: url('Futura Light Regular.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* --- VARIABLES & RESET --- */
+        :root {
+            --bg-color: #F2EFE4; /* Vintage Paper Cream */
+            --text-navy: #1E3D59; /* Deep Navy Blue */
+            --text-rust: #A04028; /* Rusty/Burnt Orange */
+            --font-heading: 'Gelosa Cara', serif;
+            --font-body: 'Futura Light', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-navy);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1, h2, h3, h4, .nav-link {
+            font-family: var(--font-heading);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+        
+        a {
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--text-rust);
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(242, 239, 228, 0.95);
+            border-bottom: 1px solid var(--text-navy);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-navy);
+            font-family: var(--font-heading); 
+            font-size: 1.5rem; 
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--text-rust);
+        }
+
+        /* --- MAIN LAYOUT --- */
+        main {
+            padding-top: 80px; 
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        section {
+            width: 100%;
+            max-width: 1000px;
+            padding: 4rem 2rem;
+        }
+
+        /* --- HOMEPAGE: THE POSTCARD --- */
+        .postcard-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            min-height: 85vh;
+        }
+
+        .postcard {
+            background-color: var(--bg-color);
+            width: 100%;
+            max-width: 900px;
+            aspect-ratio: 3/2;
+            border: 1px solid rgba(0,0,0,0.1);
+            box-shadow: 10px 10px 30px rgba(0,0,0,0.1);
+            display: flex;
+            position: relative;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+        }
+
+        .divider {
+            position: absolute;
+            left: 50%;
+            top: 10%;
+            bottom: 10%;
+            width: 1px;
+            background-color: var(--text-navy);
+            transform: translateX(-50%);
+        }
+
+        .shell-icon {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px; 
+            height: auto;
+            background-color: var(--bg-color);
+            padding: 10px 0;
+            z-index: 2;
+        }
+        
+        .shell-placeholder {
+            font-size: 3rem;
+            color: var(--text-navy);
+            background: var(--bg-color);
+            line-height: 1;
+        }
+
+        /* Left Side */
+        .card-left {
+            flex: 1;
+            position: relative;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .stamp-mark {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            color: var(--text-rust);
+            font-family: var(--font-heading); 
+            font-size: 3.5rem;
+            transform: rotate(-15deg);
+            z-index: 1;
+            line-height: 1;
+        }
+
+        .couple-names {
+            font-family: var(--font-heading); 
+            font-size: 4rem;
+            line-height: 0.9;
+            color: var(--text-navy);
+            text-align: center;
+            margin-top: 2rem;
+            text-transform: uppercase;
+        }
+
+        .location-footer {
+            position: absolute;
+            bottom: 25px;
+            left: 40px;
+            font-size: 0.75rem;
+            font-family: 'Futura Light', sans-serif;
+            font-style: italic;
+            color: var(--text-navy);
+            letter-spacing: 1px;
+        }
+
+        /* Right Side */
+        .card-right {
+            flex: 1;
+            padding: 3rem 3rem 3rem 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .event-details {
+            text-align: left;
+            margin-bottom: 2rem;
+            color: var(--text-rust);
+        }
+
+        .event-title {
+            font-family: var(--font-heading); 
+            font-size: 4.5rem;
+            line-height: 0.9;
+            margin-bottom: 0.5rem;
+            color: var(--text-navy);
+            text-transform: uppercase;
+        }
+
+        .event-date {
+            font-family: var(--font-heading); 
+            font-size: 2rem;
+            color: var(--text-navy);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .year-row {
+            display: flex; 
+            justify-content: space-between; 
+            align-items: baseline;
+            font-family: var(--font-heading); 
+            font-size: 1.5rem;
+            color: var(--text-navy);
+            margin-top: 5px;
+        }
+
+        .address-lines {
+            margin-top: 2rem;
+            width: 100%;
+        }
+
+        .line {
+            height: 1px;
+            background-color: var(--text-navy);
+            margin-bottom: 2.5rem;
+            width: 100%;
+        }
+        
+        .whale-icon {
+            text-align: center;
+            color: var(--text-navy);
+            margin-top: -1rem;
+            font-size: 1.5rem;
+        }
+
+        /* --- SECTIONS --- */
+        .section-title {
+            font-family: var(--font-heading);
+            text-align: center;
+            font-size: 4rem;
+            color: var(--text-rust);
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--text-navy);
+            padding-bottom: 1rem;
+            display: inline-block;
+        }
+        
+        .section-subtitle {
+            font-family: var(--font-heading);
+            text-align: center;
+            font-size: 2rem;
+            color: var(--text-navy);
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+        }
+        
+        .center-wrapper {
+            text-align: center;
+        }
+
+        .timeline-item h3, .rec-card h3 {
+            font-family: var(--font-heading);
+            text-transform: uppercase;
+        }
+
+        /* Itinerary */
+        .timeline-item {
+            display: flex;
+            margin-bottom: 2.5rem;
+            border-left: 2px solid var(--text-rust);
+            padding-left: 2rem;
+        }
+        
+        .time {
+            font-weight: bold;
+            min-width: 110px;
+            color: var(--text-rust);
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+        }
+        
+        .map-link {
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 4px;
+            color: var(--text-navy);
+        }
+        
+        .transport-note {
+            text-align: center;
+            margin-top: 3rem;
+            font-style: italic;
+            border-top: 1px solid var(--text-navy);
+            padding-top: 1rem;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Hotels & Restaurants */
+        .recommendations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .rec-card {
+            border: 1px solid var(--text-navy);
+            padding: 1.5rem;
+            transition: transform 0.2s;
+        }
+        
+        .rec-card:hover {
+            transform: translateY(-5px);
+            background-color: #fff;
+        }
+
+        .rec-card h3 {
+            color: var(--text-navy);
+            margin-bottom: 0.5rem;
+            font-size: 2.2rem;
+        }
+
+        .rec-card span {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--text-rust);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            font-family: var(--font-body);
+            letter-spacing: 2px;
+        }
+        
+        /* RSVP Form */
+        .rsvp-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .rsvp-form input, .rsvp-form button {
+            padding: 1rem;
+            border: 1px solid var(--text-navy);
+            font-family: var(--font-body);
+            background: transparent;
+        }
+        
+        .rsvp-form button {
+            background-color: var(--text-rust);
+            color: white;
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .rsvp-form button:hover {
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background: repeating-linear-gradient(
+                90deg,
+                var(--text-navy),
+                var(--text-navy) 40px,
+                var(--text-rust) 40px,
+                var(--text-rust) 80px
+            );
+            height: 100px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .footer-content {
+            background: var(--bg-color);
+            padding: 10px 30px;
+            border: 1px solid var(--text-navy);
+            font-family: var(--font-heading);
+            letter-spacing: 2px;
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .postcard {
+                flex-direction: column;
+                aspect-ratio: auto;
+                height: auto;
+            }
+            .divider {
+                width: 80%;
+                height: 1px;
+                top: auto; bottom: auto; left: 50%;
+                margin: 2rem 0;
+                position: relative;
+                transform: translateX(-50%);
+            }
+            .shell-icon {
+                top: auto; bottom: auto; position: relative;
+                margin-top: -35px; margin-bottom: -35px;
+            }
+            .card-left, .card-right {
+                padding: 2rem; text-align: center;
+            }
+            .event-details, .event-year {
+                text-align: center;
+            }
+            .nav-container {
+                flex-direction: column; align-items: center; gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <a href="#home" class="nav-link">Home</a>
+            <a href="#itinerario" class="nav-link">Itinerario</a>
+            <a href="#hoteles" class="nav-link">Hoteles</a>
+            <a href="#restaurantes" class="nav-link">Restaurantes</a>
+            <a href="#rsvp" class="nav-link">RSVP</a>
+        </div>
+    </nav>
+
+    <main>
+        <section id="home" class="postcard-wrapper">
+            <div class="postcard">
+                <div class="divider"></div>
+                <img src="shell.png" alt="Shell" class="shell-icon" onerror="this.style.display='none'; document.querySelector('.shell-placeholder').style.display='block';">
+                <div class="shell-placeholder shell-icon" style="display:none;">🐚</div>
+
+                <div class="card-left">
+                    <div class="stamp-mark">Los Cabos</div>
+                    <div class="couple-names">
+                        Daniela y Alfonso
+                    </div>
+                    <div class="location-footer">
+                        Punta Ballena - Los Cabos Baja California Sur
+                    </div>
+                </div>
+
+                <div class="card-right">
+                    <div class="event-details">
+                        <div class="event-title">Boda Civil</div>
+                        <div class="event-date">Domingo 15 de Febrero</div>
+                        <div class="year-row">
+                            <span style="font-family: 'Futura Light', sans-serif;">DEL</span>
+                            <span>2026</span>
+                        </div>
+                    </div>
+
+                    <div class="address-lines">
+                        <div class="line"></div>
+                        <div class="line"></div>
+                        <div class="line"></div>
+                        <div class="line"></div>
+                    </div>
+                    
+                    <div class="whale-icon">🐳</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="itinerario">
+            <div class="center-wrapper">
+                <h2 class="section-title">Itinerario</h2>
+                <div class="section-subtitle">Domingo 15 de Febrero</div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="time">1:30 PM</div>
+                <div class="details">
+                    <h3>Ceremonia Boda Civil</h3>
+                    <p>
+                        <a href="https://maps.app.goo.gl/LgZ9CgJLvcAJneKB7" target="_blank" class="map-link">
+                            Villa 111, Punta Ballena
+                        </a>
+                    </p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="time">3:00 PM</div>
+                <div class="details">
+                    <h3>Recepción y Banquete</h3>
+                    <p>
+                        <a href="https://maps.app.goo.gl/6V9LXSiuEZsgcLdUA" target="_blank" class="map-link">
+                            Toro Latin Kitchen
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="transport-note">
+                *Habrá transporte de la ceremonia civil al banquete
+            </div>
+        </section>
+
+        <section id="hoteles">
+            <div class="center-wrapper">
+                <h2 class="section-title">Where to Stay</h2>
+                <p style="margin-bottom: 2rem;">Hemos seleccionado algunas opciones para su comodidad.</p>
+            </div>
+            <div class="recommendations-grid">
+                <div class="rec-card">
+                    <h3>The Cape</h3>
+                    <span>A Thompson Hotel</span>
+                    <p>Lujo moderno con vistas al famoso Arco. Ideal para quienes buscan un ambiente vibrante.</p>
+                </div>
+                <div class="rec-card">
+                    <h3>Esperanza</h3>
+                    <span>Auberge Resorts</span>
+                    <p>El lugar de la recepción. Un escape privado con playas hermosas y servicio de primera.</p>
+                </div>
+                <div class="rec-card">
+                    <h3>Hotel El Ganzo</h3>
+                    <span>San José del Cabo</span>
+                    <p>Una opción artística y boutique cerca de la marina.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="restaurantes">
+            <div class="center-wrapper">
+                <h2 class="section-title">Restaurantes</h2>
+                <p style="margin-bottom: 2rem;">Nuestros lugares favoritos para comer en Baja.</p>
+            </div>
+            <div class="recommendations-grid">
+                <div class="rec-card">
+                    <h3>Flora Farms</h3>
+                    <span>Farm to Table</span>
+                    <p>Una experiencia culinaria en una granja orgánica. Imprescindible reservar.</p>
+                </div>
+                <div class="rec-card">
+                    <h3>Acre Baja</h3>
+                    <span>Cocktails & Dinner</span>
+                    <p>Ambiente selvático chic con excelente mixología.</p>
+                </div>
+                <div class="rec-card">
+                    <h3>El Farallon</h3>
+                    <span>Seafood</span>
+                    <p>Cena sobre los acantilados escuchando las olas romper.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="rsvp">
+             <div class="center-wrapper">
+                <h2 class="section-title">RSVP</h2>
+                <p style="margin-bottom: 2rem;">Por favor confirmar asistencia antes del 1 de Enero.</p>
+            </div>
+            <form class="rsvp-form">
+                <input type="text" placeholder="Nombre Completo">
+                <input type="email" placeholder="Email">
+                <button type="button">Confirmar</button>
+            </form>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            ALFONSO Y DANIELA • 2026
+        </div>
+    </footer>
+
+</body>
+</html>
