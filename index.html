@@ -5,152 +5,120 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daniela y Alfonso | Los Cabos 2026</title>
     <style>
-        /* --- FONT FACE DECLARATIONS --- */
+        /* --- 1. ROBUST FONT LOADING --- */
+        /* We use quotes to handle spaces in filenames safely */
         @font-face {
             font-family: 'Gelosa Cara';
-            src: url('Fonts/GelosaCara-RegularCondensed.otf') format('opentype'); /* Ensure path matches your folder structure */
+            /* Ensure this path matches your GitHub folder structure EXACTLY */
+            src: url('Fonts/GelosaCara-RegularCondensed.otf') format('opentype');
             font-weight: normal;
             font-style: normal;
+            font-display: swap; /* Helps text show up faster */
         }
 
         @font-face {
             font-family: 'Futura Light';
-            src: url('Fonts/Futura Light Regular.otf') format('opentype'); /* Ensure path matches your folder structure */
+            src: url('Fonts/Futura Light Regular.otf') format('opentype');
             font-weight: normal;
             font-style: normal;
+            font-display: swap;
         }
 
-        /* --- VARIABLES & RESET --- */
+        /* --- 2. VARIABLES & RESET --- */
         :root {
-            --bg-color: #F2EFE4; /* Vintage Paper Cream */
-            --text-navy: #1E3D59; /* Deep Navy Blue */
-            --text-rust: #A04028; /* Rusty/Burnt Orange */
+            --bg-color: #F2EFE4;
+            --text-navy: #1E3D59;
+            --text-rust: #A04028;
             --font-heading: 'Gelosa Cara', serif;
             --font-body: 'Futura Light', sans-serif;
+            
+            /* Fluid Spacing Variables */
+            --spacing-sm: clamp(1rem, 2vw, 1.5rem);
+            --spacing-md: clamp(2rem, 4vw, 3rem);
+            --spacing-lg: clamp(3rem, 6vw, 5rem);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-navy);
             font-family: var(--font-body);
-            line-height: 1.6;
+            line-height: 1.5;
             overflow-x: hidden;
+            font-size: 16px; /* Base size */
         }
 
-        /* --- TYPOGRAPHY --- */
-        h1, h2, h3, h4, .nav-link {
+        /* --- 3. FLUID TYPOGRAPHY --- */
+        /* Text size scales smoothly between mobile and desktop */
+        h1, h2, h3, .nav-link, .section-title {
             font-family: var(--font-heading);
             text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        p {
-            font-size: 1.1rem;
             letter-spacing: 1px;
         }
-        
-        a {
-            color: inherit;
-            transition: color 0.3s ease;
-        }
-        
-        a:hover {
-            color: var(--text-rust);
-        }
 
-        /* --- NAVIGATION --- */
+        p { font-size: clamp(1rem, 1.1vw, 1.25rem); letter-spacing: 0.5px; }
+        
+        a { color: inherit; transition: color 0.3s ease; }
+        a:hover { color: var(--text-rust); }
+
+        /* --- 4. NAVIGATION --- */
         nav {
             position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: #F2EFE4;
+            top: 0; width: 100%;
+            background-color: var(--bg-color);
             border-bottom: 1px solid var(--text-navy);
             z-index: 1000;
-            padding: 0;
-            height: 70px; /* Fixed height to prevent layout jumps */
-            display: flex;
-            align-items: center;
+            height: 70px;
+            display: flex; align-items: center;
         }
 
         .nav-container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: center; /* Center links on desktop */
-            align-items: center;
-            padding: 0 1rem;
+            width: 100%; max-width: 1200px; margin: 0 auto;
+            display: flex; justify-content: center; align-items: center;
+            padding: 0 1.5rem;
         }
 
-        /* Group links for easy toggling */
-        .nav-links-wrapper {
-            display: flex;
-            gap: 2rem;
-        }
+        .nav-links-wrapper { display: flex; gap: 2rem; }
 
         .nav-link {
             text-decoration: none;
             color: var(--text-navy);
-            font-family: var(--font-heading); 
-            font-size: 1.5rem; 
-            transition: color 0.3s ease;
+            font-size: 1.3rem; 
         }
 
-        .nav-link:hover {
-            color: var(--text-rust);
-        }
-
-        /* Hamburger Icon (Hidden on Desktop) */
         .hamburger {
             display: none;
-            background: none;
-            border: none;
-            font-size: 2rem;
-            color: var(--text-navy);
-            cursor: pointer;
-            padding: 0;
-            margin-left: auto; /* Push to right on mobile */
+            background: none; border: none;
+            font-size: 2rem; color: var(--text-navy);
+            cursor: pointer; margin-left: auto;
         }
 
-        /* --- MAIN LAYOUT --- */
+        /* --- 5. LAYOUT & SECTIONS --- */
         main {
-            padding-top: 70px; /* Matches nav height */
+            padding-top: 70px;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            display: flex; flex-direction: column; align-items: center;
         }
 
         section {
-            width: 100%;
-            max-width: 1000px;
-            padding: 4rem 2rem;
+            width: 100%; max-width: 1100px;
+            padding: var(--spacing-lg) var(--spacing-sm);
         }
 
-        /* --- HOMEPAGE: THE POSTCARD --- */
+        /* --- 6. ADAPTIVE POSTCARD --- */
         .postcard-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem;
+            display: flex; justify-content: center; align-items: center;
             min-height: 85vh;
+            padding: var(--spacing-sm);
         }
 
         .postcard {
             background-color: var(--bg-color);
-            width: 100%;
-            max-width: 900px;
-            aspect-ratio: 3/2;
+            width: 100%; max-width: 1000px;
+            /* Adaptive Aspect Ratio: 3/2 on desktop, auto on mobile */
+            aspect-ratio: 3/2; 
             border: 1px solid rgba(0,0,0,0.1);
             box-shadow: 10px 10px 30px rgba(0,0,0,0.1);
             display: flex;
@@ -158,412 +126,237 @@
             background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
         }
 
-        /* Vertical Divider for Desktop */
-        .divider {
-            position: absolute;
-            left: 50%;
-            top: 10%;
-            bottom: 10%;
-            width: 1px;
-            background-color: var(--text-navy);
-            transform: translateX(-50%);
+        /* --- POSTCARD ELEMENTS --- */
+        .card-left, .card-right {
+            flex: 1;
+            padding: var(--spacing-md);
+            display: flex; flex-direction: column; justify-content: center;
+            position: relative;
+            z-index: 1;
         }
 
-        /* Shell Icon Centered */
+        .divider {
+            position: absolute;
+            left: 50%; top: 10%; bottom: 10%;
+            width: 1px; background-color: var(--text-navy);
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+
         .shell-icon {
             position: absolute;
-            left: 50%;
-            top: 50%;
+            left: 50%; top: 50%;
             transform: translate(-50%, -50%);
-            width: 60px; 
-            height: auto;
+            width: 60px; height: auto;
             background-color: var(--bg-color);
             padding: 10px 0;
             z-index: 2;
         }
-        
-        .shell-placeholder {
-            font-size: 3rem;
-            color: var(--text-navy);
-            background: var(--bg-color);
-            line-height: 1;
-        }
 
-        /* Left Side */
-        .card-left {
-            flex: 1;
-            position: relative;
-            padding: 3rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
+        /* Typography - Fluid Scaling */
         .stamp-mark {
             position: absolute;
-            top: 40px;
-            left: 40px;
+            top: 40px; left: 40px;
             color: var(--text-rust);
-            font-family: var(--font-heading); 
-            font-size: 3.5rem;
+            font-size: clamp(2rem, 4vw, 3.5rem);
             transform: rotate(-15deg);
-            z-index: 1;
             line-height: 1;
+            width: fit-content;
         }
 
         .couple-names {
-            font-family: var(--font-heading); 
-            font-size: 4rem;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
             line-height: 0.9;
-            color: var(--text-navy);
             text-align: center;
             margin-top: 2rem;
-            text-transform: uppercase;
+            width: 100%;
         }
 
         .location-footer {
             position: absolute;
-            bottom: 25px;
-            left: 40px;
-            font-size: 0.75rem;
-            font-family: 'Futura Light', sans-serif;
+            bottom: 25px; left: 40px;
+            font-size: clamp(0.7rem, 1vw, 0.9rem);
             font-style: italic;
-            color: var(--text-navy);
-            letter-spacing: 1px;
-        }
-
-        /* Right Side */
-        .card-right {
-            flex: 1;
-            padding: 3rem 3rem 3rem 4rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .event-details {
-            text-align: left;
-            margin-bottom: 2rem;
-            color: var(--text-rust);
         }
 
         .event-title {
-            font-family: var(--font-heading); 
-            font-size: 4.5rem;
+            font-size: clamp(3rem, 6vw, 5rem);
             line-height: 0.9;
-            margin-bottom: 0.5rem;
             color: var(--text-navy);
-            text-transform: uppercase;
+            margin-bottom: 0.5rem;
         }
 
         .event-date {
-            font-family: var(--font-heading); 
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 2.5vw, 2.2rem);
             color: var(--text-navy);
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         .year-row {
-            display: flex; 
-            justify-content: space-between; 
-            align-items: baseline;
-            font-family: var(--font-heading); 
-            font-size: 1.5rem;
-            color: var(--text-navy);
+            display: flex; justify-content: space-between; align-items: baseline;
+            font-size: clamp(1.2rem, 2vw, 1.8rem);
             margin-top: 5px;
         }
 
-        .address-lines {
-            margin-top: 2rem;
-            width: 100%;
-        }
-
+        .address-lines { margin-top: 2rem; width: 100%; }
         .line {
-            height: 1px;
-            background-color: var(--text-navy);
-            margin-bottom: 2.5rem;
+            height: 1px; background-color: var(--text-navy);
+            margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
             width: 100%;
         }
         
-        .whale-icon {
-            text-align: center;
-            color: var(--text-navy);
-            margin-top: -1rem;
-            font-size: 1.5rem;
-        }
+        .whale-icon { text-align: center; font-size: 1.5rem; margin-top: -1rem; }
 
-        /* --- SECTIONS --- */
+        /* --- ITINERARY & OTHER SECTIONS --- */
         .section-title {
-            font-family: var(--font-heading);
+            font-size: clamp(2.5rem, 5vw, 4rem);
             text-align: center;
-            font-size: 4rem;
-            color: var(--text-rust);
-            margin-bottom: 1rem;
             border-bottom: 1px solid var(--text-navy);
             padding-bottom: 1rem;
             display: inline-block;
+            margin-bottom: 0.5rem;
+            color: var(--text-rust);
         }
         
         .section-subtitle {
-            font-family: var(--font-heading);
-            text-align: center;
-            font-size: 2rem;
-            color: var(--text-navy);
-            margin-bottom: 3rem;
-            text-transform: uppercase;
-        }
-        
-        .center-wrapper {
-            text-align: center;
+            text-align: center; font-size: clamp(1.2rem, 2vw, 1.5rem);
+            margin-bottom: 3rem; text-transform: uppercase;
         }
 
-        .timeline-item h3, .rec-card h3 {
-            font-family: var(--font-heading);
-            text-transform: uppercase;
-        }
-
-        /* Itinerary */
         .timeline-item {
-            display: flex;
-            margin-bottom: 2.5rem;
+            display: flex; margin-bottom: 2.5rem;
             border-left: 2px solid var(--text-rust);
             padding-left: 2rem;
         }
         
         .time {
-            font-weight: bold;
-            min-width: 110px;
-            color: var(--text-rust);
+            font-weight: bold; min-width: 100px;
+            color: var(--text-rust); font-size: 1.5rem;
             font-family: var(--font-heading);
-            font-size: 1.8rem;
-        }
-        
-        .map-link {
-            text-decoration: underline;
-            text-decoration-thickness: 1px;
-            text-underline-offset: 4px;
-            color: var(--text-navy);
-        }
-        
-        .transport-note {
-            text-align: center;
-            margin-top: 3rem;
-            font-style: italic;
-            border-top: 1px solid var(--text-navy);
-            padding-top: 1rem;
-            width: 80%;
-            margin-left: auto;
-            margin-right: auto;
         }
 
-        /* Hotels & Restaurants */
         .recommendations-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
 
         .rec-card {
             border: 1px solid var(--text-navy);
-            padding: 1.5rem;
+            padding: 2rem;
             transition: transform 0.2s;
+            background: rgba(255,255,255,0.4);
         }
-        
-        .rec-card:hover {
-            transform: translateY(-5px);
-            background-color: #fff;
-        }
-
-        .rec-card h3 {
-            color: var(--text-navy);
-            margin-bottom: 0.5rem;
-            font-size: 2.2rem;
+        .rec-card h3 { font-size: 2rem; margin-bottom: 0.5rem; color: var(--text-navy); }
+        .rec-card span { 
+            display: block; font-size: 0.9rem; color: var(--text-rust);
+            margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 2px;
         }
 
-        .rec-card span {
-            display: block;
-            font-size: 0.9rem;
-            color: var(--text-rust);
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            font-family: var(--font-body);
-            letter-spacing: 2px;
-        }
+        /* --- 7. RESPONSIVE BREAKPOINTS --- */
         
-        /* RSVP Form */
-        .rsvp-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-        
-        .rsvp-form input, .rsvp-form button {
-            padding: 1rem;
-            border: 1px solid var(--text-navy);
-            font-family: var(--font-body);
-            background: transparent;
-        }
-        
-        .rsvp-form button {
-            background-color: var(--text-rust);
-            color: white;
-            font-family: var(--font-heading);
-            font-size: 1.5rem;
-            cursor: pointer;
-            border: none;
-        }
-        
-        .rsvp-form button:hover {
-            opacity: 0.9;
-        }
-
-        /* Footer */
-        footer {
-            background: repeating-linear-gradient(
-                90deg,
-                var(--text-navy),
-                var(--text-navy) 40px,
-                var(--text-rust) 40px,
-                var(--text-rust) 80px
-            );
-            height: 100px;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .footer-content {
-            background: var(--bg-color);
-            padding: 10px 30px;
-            border: 1px solid var(--text-navy);
-            font-family: var(--font-heading);
-            letter-spacing: 2px;
-            font-size: 1.2rem;
-        }
-
-        /* --- MOBILE RESPONSIVENESS (FIXED) --- */
-        @media (max-width: 768px) {
+        /* TABLET & MOBILE (Max Width 900px) */
+        @media (max-width: 900px) {
+            /* Fix Navigation */
+            .nav-container { justify-content: flex-end; }
+            .hamburger { display: block; }
             
-            /* --- MENU FIXES --- */
-            .nav-container {
-                justify-content: flex-end; /* Hamburger to right */
-                padding: 0 1.5rem;
-            }
-
-            .hamburger {
-                display: block;
-            }
-
             .nav-links-wrapper {
-                position: absolute;
-                top: 70px; /* Below navbar */
-                left: 0;
-                width: 100%;
-                background-color: #F2EFE4;
-                flex-direction: column;
-                align-items: center;
-                gap: 1.5rem;
-                padding: 2rem 0;
+                position: absolute; top: 70px; left: 0; width: 100%;
+                background-color: var(--bg-color);
+                flex-direction: column; align-items: center;
+                gap: 2rem; padding: 2rem 0;
                 border-bottom: 1px solid var(--text-navy);
-                
-                /* Hidden by default */
-                display: none; 
+                display: none; /* Hidden by default */
             }
+            .nav-links-wrapper.open { display: flex; }
 
-            .nav-links-wrapper.open {
-                display: flex; /* Show when open */
-            }
-
-            /* --- POSTCARD FIXES --- */
-            /* Force the postcard to be a vertical flex column */
+            /* Fix Postcard Layout - Switch to Stacked */
             .postcard {
                 flex-direction: column;
                 aspect-ratio: auto;
                 height: auto;
-                width: 100%;
-                margin-top: 10px;
+                margin-top: 0;
             }
 
-            /* Turn the vertical divider into a HORIZONTAL divider */
+            .postcard-wrapper { padding: 1rem 0; align-items: flex-start; }
+
+            /* Reset Divider to Horizontal */
             .divider {
-                width: 80%;
-                height: 1px;
-                top: auto;
-                bottom: auto;
-                left: 50%;
-                margin: 0;
+                width: 80%; height: 1px;
+                top: auto; bottom: auto; left: 50%;
                 position: relative;
                 transform: translateX(-50%);
-                margin-bottom: 20px;
-                margin-top: 20px;
+                margin: 0;
             }
 
-            /* Position shell relative to the flow, not absolute */
+            /* Reset Shell Icon */
             .shell-icon {
                 position: relative;
-                top: auto;
-                left: auto;
+                top: auto; left: auto;
                 transform: none;
-                margin: -45px auto 0 auto; /* Pull it up onto the line */
+                margin: -31px auto 0 auto; /* Half height overlap */
                 display: block;
             }
 
-            /* Fix Overlapping Elements - Make them flow naturally */
+            /* Un-scramble Content */
             .card-left, .card-right {
-                flex: none; /* Do not stretch */
                 width: 100%;
-                padding: 2rem 1rem;
                 text-align: center;
+                padding: 3rem 1.5rem;
             }
-            
-            /* Un-scramble the stamp */
+
             .stamp-mark {
                 position: relative;
-                top: auto; 
-                left: auto;
+                top: auto; left: auto;
                 margin: 0 auto 1rem auto;
-                transform: rotate(-5deg); /* Slight tilt looks better on mobile */
-                display: block;
+                transform: rotate(-5deg);
                 text-align: center;
             }
-            
-            /* Un-scramble the footer */
+
             .location-footer {
                 position: relative;
-                bottom: auto; 
-                left: auto;
+                bottom: auto; left: auto;
                 margin-top: 2rem;
                 text-align: center;
                 width: 100%;
             }
 
-            /* Typography Scaling */
-            .couple-names { font-size: 3rem; margin-top: 1rem; }
-            .event-title { font-size: 3.5rem; }
-            .event-details { text-align: center; }
-            
-            .year-row {
-                justify-content: center;
-                gap: 20px;
-            }
-
-            /* Section Padding */
-            section { padding: 3rem 1.5rem; }
-            
-            /* Itinerary Mobile Layout */
+            /* Stack Timeline */
             .timeline-item {
                 flex-direction: column;
-                border-left: none;
-                border-top: 2px solid var(--text-rust);
-                padding-left: 0;
-                padding-top: 1rem;
+                border-left: none; border-top: 2px solid var(--text-rust);
+                padding-left: 0; padding-top: 1rem;
                 text-align: center;
+                align-items: center;
             }
             .time { margin-bottom: 0.5rem; }
+        }
+
+        /* RSVP Form */
+        .rsvp-form {
+            display: flex; flex-direction: column; gap: 1rem;
+            max-width: 500px; margin: 0 auto;
+        }
+        .rsvp-form input, .rsvp-form button {
+            padding: 1rem; border: 1px solid var(--text-navy);
+            font-family: var(--font-body); background: transparent; font-size: 1rem;
+        }
+        .rsvp-form button {
+            background-color: var(--text-rust); color: white;
+            font-family: var(--font-heading); font-size: 1.5rem;
+            cursor: pointer; border: none;
+        }
+
+        /* Footer */
+        footer {
+            background: repeating-linear-gradient(90deg, var(--text-navy), var(--text-navy) 40px, var(--text-rust) 40px, var(--text-rust) 80px);
+            height: 100px; width: 100%;
+            display: flex; justify-content: center; align-items: center;
+        }
+        .footer-content {
+            background: var(--bg-color); padding: 10px 30px;
+            border: 1px solid var(--text-navy);
+            font-family: var(--font-heading); letter-spacing: 2px;
         }
     </style>
 </head>
@@ -571,10 +364,7 @@
 
     <nav>
         <div class="nav-container">
-            <button class="hamburger" aria-label="Menu" onclick="toggleMenu()">
-                ☰
-            </button>
-
+            <button class="hamburger" aria-label="Menu" onclick="toggleMenu()">☰</button>
             <div class="nav-links-wrapper" id="navLinks">
                 <a href="#home" class="nav-link" onclick="toggleMenu()">Home</a>
                 <a href="#itinerario" class="nav-link" onclick="toggleMenu()">Itinerario</a>
@@ -590,12 +380,8 @@
             <div class="postcard">
                 <div class="card-left">
                     <div class="stamp-mark">Los Cabos</div>
-                    <div class="couple-names">
-                        Daniela y Alfonso
-                    </div>
-                    <div class="location-footer">
-                        Punta Ballena - Los Cabos Baja California Sur
-                    </div>
+                    <div class="couple-names">Daniela y Alfonso</div>
+                    <div class="location-footer">Punta Ballena - Los Cabos Baja California Sur</div>
                 </div>
 
                 <div class="divider"></div>
@@ -618,7 +404,6 @@
                         <div class="line"></div>
                         <div class="line"></div>
                     </div>
-                    
                     <div class="whale-icon">🐳</div>
                 </div>
             </div>
@@ -634,11 +419,7 @@
                 <div class="time">1:30 PM</div>
                 <div class="details">
                     <h3>Ceremonia Boda Civil</h3>
-                    <p>
-                        <a href="https://maps.app.goo.gl/LgZ9CgJLvcAJneKB7" target="_blank" class="map-link">
-                            Villa 111, Punta Ballena
-                        </a>
-                    </p>
+                    <p><a href="https://maps.app.goo.gl/LgZ9CgJLvcAJneKB7" target="_blank" class="map-link">Villa 111, Punta Ballena</a></p>
                 </div>
             </div>
             
@@ -646,17 +427,11 @@
                 <div class="time">3:00 PM</div>
                 <div class="details">
                     <h3>Recepción y Banquete</h3>
-                    <p>
-                        <a href="https://maps.app.goo.gl/6V9LXSiuEZsgcLdUA" target="_blank" class="map-link">
-                            Toro Latin Kitchen
-                        </a>
-                    </p>
+                    <p><a href="https://maps.app.goo.gl/6V9LXSiuEZsgcLdUA" target="_blank" class="map-link">Toro Latin Kitchen</a></p>
                 </div>
             </div>
 
-            <div class="transport-note">
-                *Habrá transporte de la ceremonia civil al banquete
-            </div>
+            <div class="transport-note">*Habrá transporte de la ceremonia civil al banquete</div>
         </section>
 
         <section id="hoteles">
@@ -666,18 +441,15 @@
             </div>
             <div class="recommendations-grid">
                 <div class="rec-card">
-                    <h3>The Cape</h3>
-                    <span>A Thompson Hotel</span>
+                    <h3>The Cape</h3><span>A Thompson Hotel</span>
                     <p>Lujo moderno con vistas al famoso Arco. Ideal para quienes buscan un ambiente vibrante.</p>
                 </div>
                 <div class="rec-card">
-                    <h3>Esperanza</h3>
-                    <span>Auberge Resorts</span>
+                    <h3>Esperanza</h3><span>Auberge Resorts</span>
                     <p>El lugar de la recepción. Un escape privado con playas hermosas y servicio de primera.</p>
                 </div>
                 <div class="rec-card">
-                    <h3>Hotel El Ganzo</h3>
-                    <span>San José del Cabo</span>
+                    <h3>Hotel El Ganzo</h3><span>San José del Cabo</span>
                     <p>Una opción artística y boutique cerca de la marina.</p>
                 </div>
             </div>
@@ -690,18 +462,15 @@
             </div>
             <div class="recommendations-grid">
                 <div class="rec-card">
-                    <h3>Flora Farms</h3>
-                    <span>Farm to Table</span>
+                    <h3>Flora Farms</h3><span>Farm to Table</span>
                     <p>Una experiencia culinaria en una granja orgánica. Imprescindible reservar.</p>
                 </div>
                 <div class="rec-card">
-                    <h3>Acre Baja</h3>
-                    <span>Cocktails & Dinner</span>
+                    <h3>Acre Baja</h3><span>Cocktails & Dinner</span>
                     <p>Ambiente selvático chic con excelente mixología.</p>
                 </div>
                 <div class="rec-card">
-                    <h3>El Farallon</h3>
-                    <span>Seafood</span>
+                    <h3>El Farallon</h3><span>Seafood</span>
                     <p>Cena sobre los acantilados escuchando las olas romper.</p>
                 </div>
             </div>
@@ -722,9 +491,7 @@
     </main>
 
     <footer>
-        <div class="footer-content">
-            ALFONSO Y DANIELA • 2026
-        </div>
+        <div class="footer-content">ALFONSO Y DANIELA • 2026</div>
     </footer>
 
     <script>
