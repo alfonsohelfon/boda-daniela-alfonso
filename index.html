@@ -35,6 +35,10 @@
             padding: 0;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             background-color: var(--bg-color);
             color: var(--text-navy);
@@ -69,10 +73,10 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background-color: rgba(242, 239, 228, 0.95);
+            background-color: rgba(242, 239, 228, 0.98);
             border-bottom: 1px solid var(--text-navy);
             z-index: 1000;
-            padding: 1rem 0;
+            padding: 0;
         }
 
         .nav-container {
@@ -80,6 +84,13 @@
             margin: 0 auto;
             display: flex;
             justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        /* Group links for easy toggling */
+        .nav-links-wrapper {
+            display: flex;
             gap: 2rem;
         }
 
@@ -93,6 +104,17 @@
 
         .nav-link:hover {
             color: var(--text-rust);
+        }
+
+        /* Hamburger Icon (Hidden on Desktop) */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: var(--text-navy);
+            cursor: pointer;
+            padding: 0;
         }
 
         /* --- MAIN LAYOUT --- */
@@ -416,12 +438,51 @@
             font-size: 1.2rem;
         }
 
+        /* --- MOBILE RESPONSIVENESS --- */
         @media (max-width: 768px) {
+            /* Navigation */
+            .nav-container {
+                justify-content: space-between; /* Space between brand and burger */
+                width: 100%;
+            }
+
+            .hamburger {
+                display: block; /* Show hamburger on mobile */
+                z-index: 1001;
+            }
+
+            .nav-links-wrapper {
+                position: absolute;
+                top: 100%; /* Push below the navbar */
+                left: 0;
+                width: 100%;
+                background-color: rgba(242, 239, 228, 0.98);
+                flex-direction: column;
+                align-items: center;
+                gap: 1.5rem;
+                padding: 2rem 0;
+                border-bottom: 1px solid var(--text-navy);
+                
+                /* Hidden by default */
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s ease-out;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+
+            /* Class added by JS to show menu */
+            .nav-links-wrapper.open {
+                max-height: 500px; /* Large enough to fit content */
+            }
+
+            /* Postcard Layout */
             .postcard {
                 flex-direction: column;
                 aspect-ratio: auto;
                 height: auto;
+                max-width: 100%;
             }
+
             .divider {
                 width: 80%;
                 height: 1px;
@@ -430,18 +491,73 @@
                 position: relative;
                 transform: translateX(-50%);
             }
+
             .shell-icon {
                 top: auto; bottom: auto; position: relative;
                 margin-top: -35px; margin-bottom: -35px;
             }
+
             .card-left, .card-right {
-                padding: 2rem; text-align: center;
+                padding: 2rem 1.5rem; text-align: center;
             }
-            .event-details, .event-year {
+
+            /* Mobile Typography Adjustments */
+            .couple-names {
+                font-size: 3rem; /* Smaller for mobile */
+            }
+
+            .stamp-mark {
+                position: relative;
+                top: auto; left: auto;
+                margin-bottom: 1rem;
+                display: block;
+            }
+            
+            .location-footer {
+                position: relative;
+                bottom: auto; left: auto;
+                margin-top: 1.5rem;
                 text-align: center;
             }
-            .nav-container {
-                flex-direction: column; align-items: center; gap: 1rem;
+
+            .event-details {
+                text-align: center;
+            }
+
+            .event-title {
+                font-size: 3.5rem; /* Smaller for mobile to prevent overflow */
+            }
+
+            .year-row {
+                justify-content: center;
+                gap: 20px;
+            }
+
+            .address-lines {
+                margin-top: 1.5rem;
+            }
+            
+            /* Section Adjustments */
+            .section-title {
+                font-size: 3rem;
+            }
+            
+            section {
+                padding: 3rem 1.5rem;
+            }
+            
+            /* Itinerary on mobile */
+            .timeline-item {
+                flex-direction: column;
+                border-left: none;
+                border-top: 2px solid var(--text-rust);
+                padding-left: 0;
+                padding-top: 1rem;
+                text-align: center;
+            }
+            
+            .time {
+                margin-bottom: 0.5rem;
             }
         }
     </style>
@@ -450,11 +566,19 @@
 
     <nav>
         <div class="nav-container">
-            <a href="#home" class="nav-link">Home</a>
-            <a href="#itinerario" class="nav-link">Itinerario</a>
-            <a href="#hoteles" class="nav-link">Hoteles</a>
-            <a href="#restaurantes" class="nav-link">Restaurantes</a>
-            <a href="#rsvp" class="nav-link">RSVP</a>
+            <div class="mobile-brand" style="font-family: 'Gelosa Cara'; font-size: 1.5rem; color: var(--text-navy); display: none;">
+                </div>
+
+            <button class="hamburger" aria-label="Menu" onclick="toggleMenu()">
+                &#9776; </button>
+
+            <div class="nav-links-wrapper" id="navLinks">
+                <a href="#home" class="nav-link" onclick="toggleMenu()">Home</a>
+                <a href="#itinerario" class="nav-link" onclick="toggleMenu()">Itinerario</a>
+                <a href="#hoteles" class="nav-link" onclick="toggleMenu()">Hoteles</a>
+                <a href="#restaurantes" class="nav-link" onclick="toggleMenu()">Restaurantes</a>
+                <a href="#rsvp" class="nav-link" onclick="toggleMenu()">RSVP</a>
+            </div>
         </div>
     </nav>
 
@@ -599,6 +723,13 @@
             ALFONSO Y DANIELA • 2026
         </div>
     </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('open');
+        }
+    </script>
 
 </body>
 </html>
