@@ -8,14 +8,14 @@
         /* --- FONT FACE DECLARATIONS --- */
         @font-face {
             font-family: 'Gelosa Cara';
-            src: url('GelosaCara-RegularCondensed.otf') format('opentype');
+            src: url('Fonts/GelosaCara-RegularCondensed.otf') format('opentype'); /* Ensure path matches your folder structure */
             font-weight: normal;
             font-style: normal;
         }
 
         @font-face {
             font-family: 'Futura Light';
-            src: url('Futura Light Regular.otf') format('opentype');
+            src: url('Fonts/Futura Light Regular.otf') format('opentype'); /* Ensure path matches your folder structure */
             font-weight: normal;
             font-style: normal;
         }
@@ -73,19 +73,23 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background-color: rgba(242, 239, 228, 0.98);
+            background-color: #F2EFE4;
             border-bottom: 1px solid var(--text-navy);
             z-index: 1000;
             padding: 0;
+            height: 70px; /* Fixed height to prevent layout jumps */
+            display: flex;
+            align-items: center;
         }
 
         .nav-container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
-            justify-content: center;
+            justify-content: center; /* Center links on desktop */
             align-items: center;
-            padding: 1rem;
+            padding: 0 1rem;
         }
 
         /* Group links for easy toggling */
@@ -115,11 +119,12 @@
             color: var(--text-navy);
             cursor: pointer;
             padding: 0;
+            margin-left: auto; /* Push to right on mobile */
         }
 
         /* --- MAIN LAYOUT --- */
         main {
-            padding-top: 80px; 
+            padding-top: 70px; /* Matches nav height */
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -153,6 +158,7 @@
             background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
         }
 
+        /* Vertical Divider for Desktop */
         .divider {
             position: absolute;
             left: 50%;
@@ -163,6 +169,7 @@
             transform: translateX(-50%);
         }
 
+        /* Shell Icon Centered */
         .shell-icon {
             position: absolute;
             left: 50%;
@@ -438,25 +445,25 @@
             font-size: 1.2rem;
         }
 
-        /* --- MOBILE RESPONSIVENESS --- */
+        /* --- MOBILE RESPONSIVENESS (FIXED) --- */
         @media (max-width: 768px) {
-            /* Navigation */
+            
+            /* --- MENU FIXES --- */
             .nav-container {
-                justify-content: space-between; /* Space between brand and burger */
-                width: 100%;
+                justify-content: flex-end; /* Hamburger to right */
+                padding: 0 1.5rem;
             }
 
             .hamburger {
-                display: block; /* Show hamburger on mobile */
-                z-index: 1001;
+                display: block;
             }
 
             .nav-links-wrapper {
                 position: absolute;
-                top: 100%; /* Push below the navbar */
+                top: 70px; /* Below navbar */
                 left: 0;
                 width: 100%;
-                background-color: rgba(242, 239, 228, 0.98);
+                background-color: #F2EFE4;
                 flex-direction: column;
                 align-items: center;
                 gap: 1.5rem;
@@ -464,89 +471,90 @@
                 border-bottom: 1px solid var(--text-navy);
                 
                 /* Hidden by default */
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.4s ease-out;
-                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                display: none; 
             }
 
-            /* Class added by JS to show menu */
             .nav-links-wrapper.open {
-                max-height: 500px; /* Large enough to fit content */
+                display: flex; /* Show when open */
             }
 
-            /* Postcard Layout */
+            /* --- POSTCARD FIXES --- */
+            /* Force the postcard to be a vertical flex column */
             .postcard {
                 flex-direction: column;
                 aspect-ratio: auto;
                 height: auto;
-                max-width: 100%;
+                width: 100%;
+                margin-top: 10px;
             }
 
+            /* Turn the vertical divider into a HORIZONTAL divider */
             .divider {
                 width: 80%;
                 height: 1px;
-                top: auto; bottom: auto; left: 50%;
-                margin: 2rem 0;
+                top: auto;
+                bottom: auto;
+                left: 50%;
+                margin: 0;
                 position: relative;
                 transform: translateX(-50%);
+                margin-bottom: 20px;
+                margin-top: 20px;
             }
 
+            /* Position shell relative to the flow, not absolute */
             .shell-icon {
-                top: auto; bottom: auto; position: relative;
-                margin-top: -35px; margin-bottom: -35px;
-            }
-
-            .card-left, .card-right {
-                padding: 2rem 1.5rem; text-align: center;
-            }
-
-            /* Mobile Typography Adjustments */
-            .couple-names {
-                font-size: 3rem; /* Smaller for mobile */
-            }
-
-            .stamp-mark {
                 position: relative;
-                top: auto; left: auto;
-                margin-bottom: 1rem;
+                top: auto;
+                left: auto;
+                transform: none;
+                margin: -45px auto 0 auto; /* Pull it up onto the line */
                 display: block;
             }
+
+            /* Fix Overlapping Elements - Make them flow naturally */
+            .card-left, .card-right {
+                flex: none; /* Do not stretch */
+                width: 100%;
+                padding: 2rem 1rem;
+                text-align: center;
+            }
             
+            /* Un-scramble the stamp */
+            .stamp-mark {
+                position: relative;
+                top: auto; 
+                left: auto;
+                margin: 0 auto 1rem auto;
+                transform: rotate(-5deg); /* Slight tilt looks better on mobile */
+                display: block;
+                text-align: center;
+            }
+            
+            /* Un-scramble the footer */
             .location-footer {
                 position: relative;
-                bottom: auto; left: auto;
-                margin-top: 1.5rem;
+                bottom: auto; 
+                left: auto;
+                margin-top: 2rem;
                 text-align: center;
+                width: 100%;
             }
 
-            .event-details {
-                text-align: center;
-            }
-
-            .event-title {
-                font-size: 3.5rem; /* Smaller for mobile to prevent overflow */
-            }
-
+            /* Typography Scaling */
+            .couple-names { font-size: 3rem; margin-top: 1rem; }
+            .event-title { font-size: 3.5rem; }
+            .event-details { text-align: center; }
+            
             .year-row {
                 justify-content: center;
                 gap: 20px;
             }
 
-            .address-lines {
-                margin-top: 1.5rem;
-            }
+            /* Section Padding */
+            section { padding: 3rem 1.5rem; }
             
-            /* Section Adjustments */
-            .section-title {
-                font-size: 3rem;
-            }
-            
-            section {
-                padding: 3rem 1.5rem;
-            }
-            
-            /* Itinerary on mobile */
+            /* Itinerary Mobile Layout */
             .timeline-item {
                 flex-direction: column;
                 border-left: none;
@@ -555,10 +563,7 @@
                 padding-top: 1rem;
                 text-align: center;
             }
-            
-            .time {
-                margin-bottom: 0.5rem;
-            }
+            .time { margin-bottom: 0.5rem; }
         }
     </style>
 </head>
@@ -566,11 +571,9 @@
 
     <nav>
         <div class="nav-container">
-            <div class="mobile-brand" style="font-family: 'Gelosa Cara'; font-size: 1.5rem; color: var(--text-navy); display: none;">
-                </div>
-
             <button class="hamburger" aria-label="Menu" onclick="toggleMenu()">
-                &#9776; </button>
+                ☰
+            </button>
 
             <div class="nav-links-wrapper" id="navLinks">
                 <a href="#home" class="nav-link" onclick="toggleMenu()">Home</a>
@@ -585,10 +588,6 @@
     <main>
         <section id="home" class="postcard-wrapper">
             <div class="postcard">
-                <div class="divider"></div>
-                <img src="shell.png" alt="Shell" class="shell-icon" onerror="this.style.display='none'; document.querySelector('.shell-placeholder').style.display='block';">
-                <div class="shell-placeholder shell-icon" style="display:none;">🐚</div>
-
                 <div class="card-left">
                     <div class="stamp-mark">Los Cabos</div>
                     <div class="couple-names">
@@ -598,6 +597,10 @@
                         Punta Ballena - Los Cabos Baja California Sur
                     </div>
                 </div>
+
+                <div class="divider"></div>
+                <img src="shell.png" alt="Shell" class="shell-icon" onerror="this.style.display='none'; document.querySelector('.shell-placeholder').style.display='block';">
+                <div class="shell-placeholder shell-icon" style="display:none;">🐚</div>
 
                 <div class="card-right">
                     <div class="event-details">
