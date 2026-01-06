@@ -5,11 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daniela y Alfonso | Los Cabos</title>
     <style>
-        /* --- 1. FONT DECLARATIONS --- */
-        
+        /* --- 1. FONTS --- */
         @font-face {
             font-family: 'Gelosa Cara';
-            /* Preserved your change: GelosaCara.otf */
             src: url('Fonts/GelosaCara.otf') format('opentype');
             font-weight: normal;
             font-style: normal;
@@ -22,36 +20,38 @@
             font-style: normal;
         }
 
-        /* --- 2. GLOBAL RESET & BODY --- */
+        @font-face {
+            font-family: 'Futura';
+            src: url('Fonts/Futura.ttc') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* --- 2. GLOBAL RESET --- */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
-        body {
-            height: 100vh;
-            width: 100%;
-            overflow: hidden; 
-            
-            /* Background Image */
-            background-image: url('Photos/VIEW_buena.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            
-            background-color: #a4b0be; 
-            
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+        html {
+            scroll-behavior: smooth; /* Smooth scrolling between sections */
         }
 
-        /* --- 3. NAVIGATION (Top Menu) --- */
+        body {
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* --- 3. NAVIGATION (FIXED) --- */
         nav {
+            position: fixed;
+            top: 0;
             width: 100%;
             padding-top: 3rem;
-            z-index: 10;
+            padding-bottom: 1rem;
+            z-index: 100;
+            transition: all 0.3s ease;
         }
 
         .nav-container {
@@ -59,21 +59,20 @@
             justify-content: center;
             gap: 5vw;
             width: 100%;
-            /* Modified padding: 0 top, 1rem right, 1rem bottom, 1rem left */
-            padding: 0 1rem 1rem 1rem; 
-            /* Added the 1px fixed line matching the font color */
-            border-bottom: 1px solid #efe9dc; 
+            padding: 0 1rem 1rem 1rem;
+            border-bottom: 1px solid rgba(239, 233, 220, 0.5); /* Default Light Line */
+            transition: border-color 0.3s ease;
         }
 
         .nav-link {
             text-decoration: none;
-            color: #efe9dc; 
+            color: #efe9dc; /* Default Home Color (Light Cream) */
             font-family: 'Gelosa Cara', sans-serif;
-            font-size: 3rem; /* Preserved your change */
+            font-size: 3rem; 
             text-transform: uppercase;
             letter-spacing: 2px;
-            transition: opacity 0.3s ease;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            transition: color 0.3s ease;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         .nav-link:hover {
@@ -82,26 +81,100 @@
             text-underline-offset: 5px;
         }
 
-        /* --- 4. CENTER NAMES --- */
-        .hero-section {
-            flex-grow: 1;
+        /* Nav State: When scrolling over light backgrounds */
+        nav.dark-mode .nav-link {
+            color: #2c446c; /* Navy Blue for visibility */
+            text-shadow: none;
+        }
+        nav.dark-mode .nav-container {
+            border-bottom: 1px solid #2c446c;
+        }
+
+
+        /* --- 4. SECTION: HOME --- */
+        #home {
+            height: 100vh;
+            width: 100%;
+            /* Background Configuration */
+            background-image: url('Photos/VIEW_buena.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #a4b0be; /* Fallback */
+            
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding-bottom: 5rem; 
         }
 
         .hero-names {
             font-family: 'Brush Script Std', cursive;
-            font-size: 3.5rem; /* Preserved your change */
+            font-size: 3.5rem; 
             color: #efe9dc;
             text-align: center;
             line-height: 1.1;
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
             font-weight: normal;
+            margin-top: 10vh; /* Visual offset to clear the nav */
         }
 
-        /* --- 5. MOBILE RESPONSIVENESS --- */
+
+        /* --- 5. SECTION: ITINERARIO --- */
+        #itinerario {
+            min-height: 100vh;
+            width: 100%;
+            background-color: #d1c9b8; /* Solid Beige Background */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 8rem 1rem 4rem 1rem; /* Top padding clears fixed nav */
+        }
+
+        .day-block {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 6rem;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .day-graphic {
+            width: 100px;
+            height: auto;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .date-title {
+            font-family: 'Gelosa Cara', serif;
+            color: #2c446c; /* Navy Blue */
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-details {
+            font-family: 'Futura', sans-serif;
+            color: #fdfbf8; /* Off-White */
+            font-size: 1.5rem;
+            line-height: 1.4;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .time {
+            font-size: 1.8rem;
+            margin-top: 1rem;
+            display: block;
+        }
+
+        /* --- MOBILE RESPONSIVENESS --- */
         @media (max-width: 768px) {
             .nav-container {
                 flex-direction: column;
@@ -111,29 +184,82 @@
             }
             
             .nav-link {
-                font-size: 1.5rem; /* Adjusted slightly for mobile fitting */
+                font-size: 1.2rem;
             }
             
             .hero-names {
-                font-size: clamp(40px, 10vw, 3.5rem);
+                font-size: clamp(60px, 10vw, 3.5rem);
+            }
+
+            .date-title {
+                font-size: 2.2rem;
             }
         }
     </style>
 </head>
 <body>
 
-    <nav>
+    <nav id="navbar">
         <div class="nav-container">
-            <a href="#" class="nav-link">Home</a>
-            <a href="#" class="nav-link">Itinerario</a>
-            <a href="#" class="nav-link">Recomendaciones</a>
-            <a href="#" class="nav-link">RSVP</a>
+            <a href="#home" class="nav-link">Home</a>
+            <a href="#itinerario" class="nav-link">Itinerario</a>
+            <a href="#recomendaciones" class="nav-link">Recomendaciones</a>
+            <a href="#rsvp" class="nav-link">RSVP</a>
         </div>
     </nav>
 
-    <section class="hero-section">
+    <section id="home">
         <h1 class="hero-names">Daniela y Alfonso</h1>
     </section>
+
+    <section id="itinerario">
+        
+        <div class="day-block">
+            <img src="Graphics/graphicsweb-09.png" alt="Icono Sabado" class="day-graphic">
+            
+            <h2 class="date-title">Sábado, 14 de Feb</h2>
+            
+            <div class="event-details">
+                Shabbat + Pool Party
+                <span class="time">4:30 PM</span>
+            </div>
+        </div>
+
+        <div class="day-block">
+            <img src="Graphics/graphicsweb-10.png" alt="Icono Domingo" class="day-graphic">
+            
+            <h2 class="date-title">Domingo, 15 de Feb</h2>
+            
+            <div class="event-details">
+                <span class="time">1:30 PM</span>
+                Ceremonia y Firma:<br>
+                Villa #111 Punta Ballena
+                
+                <br><br>
+                
+                <span class="time">3:30 PM</span>
+                Recepción y Banquete:<br>
+                Toro Latin Kitchen
+            </div>
+        </div>
+
+    </section>
+
+    <script>
+        // Simple script to change nav color when scrolling past the Home section
+        const navbar = document.getElementById('navbar');
+        const homeSection = document.getElementById('home');
+
+        window.addEventListener('scroll', () => {
+            const homeBottom = homeSection.offsetHeight - 50; // Trigger slightly before end of home
+            
+            if (window.scrollY > homeBottom) {
+                navbar.classList.add('dark-mode');
+            } else {
+                navbar.classList.remove('dark-mode');
+            }
+        });
+    </script>
 
 </body>
 </html>
