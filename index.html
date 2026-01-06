@@ -43,24 +43,24 @@
             overflow-x: hidden;
         }
 
-        /* --- 3. NAVIGATION (HAMBURGER READY) --- */
+        /* --- 3. NAVIGATION (FIXED & IMPROVED) --- */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 1.5rem 0; /* Reduced padding for cleaner look */
+            padding: 1rem 0; /* Adjusted padding */
             z-index: 1000;
-            transition: background 0.3s ease, padding 0.3s ease;
+            transition: background 0.3s ease;
         }
 
         .nav-container {
             display: flex;
-            justify-content: center;
+            justify-content: center; /* Default center for desktop */
             align-items: center;
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 1rem 1rem 1rem;
+            padding: 0 1.5rem 1rem 1.5rem; /* Padding creates space above the border */
             border-bottom: 1px solid rgba(239, 233, 220, 0.5); 
             transition: border-color 0.3s ease;
             position: relative;
@@ -77,7 +77,7 @@
             text-decoration: none;
             color: #efe9dc; 
             font-family: 'Gelosa Cara', sans-serif;
-            font-size: 2.5rem; /* Slightly smaller for better fit */
+            font-size: 2.5rem; 
             text-transform: uppercase;
             letter-spacing: 2px;
             transition: color 0.3s ease;
@@ -98,12 +98,11 @@
             font-size: 2.5rem;
             color: #efe9dc;
             cursor: pointer;
-            position: absolute;
-            right: 1.5rem;
-            top: 0;
+            padding: 0;
+            line-height: 1;
         }
 
-        /* Nav State: Dark Mode (Scrolled) */
+        /* Nav State: Dark Mode */
         nav.dark-mode .nav-link, nav.dark-mode .hamburger {
             color: #2c446c; 
             text-shadow: none;
@@ -111,7 +110,6 @@
         nav.dark-mode .nav-container {
             border-bottom: 1px solid #2c446c;
         }
-        /* Mobile Menu Background */
         nav.dark-mode .nav-links-wrapper {
              background-color: #d1c9b8;
         }
@@ -231,7 +229,7 @@
             opacity: 0.7;
         }
 
-        /* --- 6. SECTION: RECOMENDACIONES (Mobile Accordion / Desktop Tabs) --- */
+        /* --- 6. SECTION: RECOMENDACIONES --- */
         #recomendaciones {
             min-height: 100vh;
             width: 100%;
@@ -242,28 +240,23 @@
             align-items: center;
         }
 
-        /* FLEXBOX ORDER TRICK 
-           Desktop: Headers order 1 (row), Content order 2 (full width below).
-           Mobile: No order (stack naturally Header > Content > Header > Content).
-        */
         .rec-wrapper {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             width: 100%;
             max-width: 1200px;
-            gap: 2rem; /* Gap between icons */
+            gap: 2rem; 
         }
 
-        /* The clickable category Header */
         .category-header {
             display: flex;
             flex-direction: column;
             align-items: center;
             cursor: pointer;
             transition: transform 0.2s ease, opacity 0.3s ease;
-            width: 250px; /* Fixed width for icons */
-            order: 1; /* Desktop: Force to top row */
+            width: 250px; 
+            order: 1; /* Desktop: Top row */
         }
 
         .category-header:hover {
@@ -286,12 +279,11 @@
             text-align: center;
         }
 
-        /* The Content Blocks */
         .rec-content-container {
             width: 100%;
             text-align: center;
             display: none; 
-            order: 2; /* Desktop: Force to bottom row */
+            order: 2; /* Desktop: Bottom row */
             margin-top: 2rem;
             animation: fadeIn 0.5s ease;
         }
@@ -420,47 +412,59 @@
         }
 
 
-        /* --- MOBILE RESPONSIVENESS --- */
+        /* --- MOBILE RESPONSIVENESS (UPDATED) --- */
         @media (max-width: 900px) {
             
-            /* 1. Hamburger Menu Logic */
-            .hamburger { display: block; }
+            /* 1. Hamburger Menu Logic (Above Line) */
+            .nav-container {
+                justify-content: flex-end; /* Pushes content (hamburger) to the right */
+                position: relative;
+            }
+
+            .hamburger { 
+                display: block; 
+                margin-left: auto; /* Ensures it sits on the right */
+            }
 
             .nav-links-wrapper {
                 position: absolute;
-                top: 100%; /* Below header */
+                top: 100%; 
                 left: 0;
                 width: 100%;
-                background-color: rgba(164, 176, 190, 0.95); /* Default Home bg transparency */
+                background-color: rgba(164, 176, 190, 0.95); 
                 flex-direction: column;
                 align-items: center;
                 gap: 2rem;
                 padding: 2rem 0;
-                
-                /* Closed State */
                 max-height: 0;
                 overflow: hidden;
                 opacity: 0;
-            }
-
-            .nav-links-wrapper.active {
-                max-height: 500px; /* Reveal menu */
-                opacity: 1;
                 border-bottom: 1px solid #2c446c;
             }
 
-            .nav-link { font-size: 1.8rem; }
-            
-            /* 2. Hero Font Resize for Single Line */
-            .hero-names {
-                /* Reduced clamp specifically for mobile to fit one line */
-                font-size: clamp(2rem, 8vw, 3rem); 
+            .nav-links-wrapper.active {
+                max-height: 500px;
+                opacity: 1;
             }
 
+            .nav-link { font-size: 1.8rem; }
+
+            /* 2. Hero Section (Fit Background) */
+            #home {
+                background-size: contain; /* Shows full binocular image */
+                background-position: center center;
+            }
+            
+            .hero-names {
+                font-size: clamp(1.8rem, 6vw, 3rem); /* Smaller font to fit in view */
+                margin-top: 0; /* Centered in the view */
+            }
+
+            /* 3. General Layouts */
             .date-title { font-size: 2.2rem; }
             .events-row { flex-direction: column; gap: 2rem; }
 
-            /* 3. Recommendations Accordion (Mobile) */
+            /* 4. Recommendations Accordion */
             .rec-wrapper {
                 flex-direction: column;
                 align-items: center;
@@ -469,7 +473,7 @@
 
             .category-header {
                 width: 100%;
-                order: unset; /* Remove order so they stack naturally */
+                order: unset; 
                 border-bottom: 1px solid #2c446c;
                 padding-bottom: 1rem;
                 margin-bottom: 1rem;
@@ -479,12 +483,12 @@
             .cat-icon { width: 80px; margin-bottom: 0.5rem; }
 
             .rec-content-container {
-                order: unset; /* Content appears directly after its header */
+                order: unset; 
                 margin-top: 0;
                 margin-bottom: 2rem;
             }
             
-            /* 4. RSVP Mobile Stack */
+            /* 5. RSVP Mobile Stack */
             #rsvp { justify-content: flex-start; }
             
             .rsvp-postcard-left, .rsvp-postcard-right {
@@ -615,7 +619,9 @@
                 </div>
             </div>
 
-        </div> </section>
+        </div>
+
+    </section>
 
     <section id="rsvp">
         <img src="Photos/graphicsweb-08.png" alt="Postcard Left" class="rsvp-postcard-left">
@@ -634,7 +640,6 @@
     </section>
 
     <script>
-        // 1. Navigation Color & Toggle Logic
         const navbar = document.getElementById('navbar');
         const homeSection = document.getElementById('home');
         const navMenu = document.getElementById('navMenu');
@@ -652,13 +657,9 @@
             navMenu.classList.toggle('active');
         }
 
-        // 2. Recommendations Logic
         function openCategory(catId) {
             const contents = document.querySelectorAll('.rec-content-container');
             const target = document.getElementById(catId);
-            
-            // If clicking the already open one, toggle it off (optional UX)
-            // But usually for Tabs we keep one open. Let's stick to standard.
             
             contents.forEach(content => {
                 if (content !== target) {
