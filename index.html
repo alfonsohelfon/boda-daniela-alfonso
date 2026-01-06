@@ -3,360 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daniela y Alfonso | Los Cabos 2026</title>
+    <title>Daniela y Alfonso | Los Cabos</title>
     <style>
-        /* --- 1. ROBUST FONT LOADING --- */
-        /* We use quotes to handle spaces in filenames safely */
+        /* --- 1. FONT DECLARATIONS --- */
+        /* Note: Paths point to the 'Fonts' folder as requested */
+        
         @font-face {
             font-family: 'Gelosa Cara';
-            /* Ensure this path matches your GitHub folder structure EXACTLY */
             src: url('Fonts/GelosaCara-RegularCondensed.otf') format('opentype');
             font-weight: normal;
             font-style: normal;
-            font-display: swap; /* Helps text show up faster */
         }
 
         @font-face {
-            font-family: 'Futura Light';
-            src: url('Fonts/Futura Light Regular.otf') format('opentype');
+            font-family: 'Brush Script Std';
+            src: url('Fonts/BrushScriptStd.otf') format('opentype');
             font-weight: normal;
             font-style: normal;
-            font-display: swap;
         }
 
-        /* --- 2. VARIABLES & RESET --- */
-        :root {
-            --bg-color: #F2EFE4;
-            --text-navy: #1E3D59;
-            --text-rust: #A04028;
-            --font-heading: 'Gelosa Cara', serif;
-            --font-body: 'Futura Light', sans-serif;
-            
-            /* Fluid Spacing Variables */
-            --spacing-sm: clamp(1rem, 2vw, 1.5rem);
-            --spacing-md: clamp(2rem, 4vw, 3rem);
-            --spacing-lg: clamp(3rem, 6vw, 5rem);
+        /* --- 2. GLOBAL RESET & BODY --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-navy);
-            font-family: var(--font-body);
-            line-height: 1.5;
-            overflow-x: hidden;
-            font-size: 16px; /* Base size */
+            height: 100vh;
+            width: 100%;
+            overflow: hidden; /* Lock scroll for the landing page look */
+            
+            /* Background Image Setup */
+            /* Pointing to the 'Photos' folder */
+            background-image: url('Photos/VIEW_buena.png');
+            background-size: cover;      /* Ensures image covers full screen */
+            background-position: center; /* Centers the image */
+            background-repeat: no-repeat;
+            
+            /* Fallback color while image loads */
+            background-color: #a4b0be; 
+            
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        /* --- 3. FLUID TYPOGRAPHY --- */
-        /* Text size scales smoothly between mobile and desktop */
-        h1, h2, h3, .nav-link, .section-title {
-            font-family: var(--font-heading);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        p { font-size: clamp(1rem, 1.1vw, 1.25rem); letter-spacing: 0.5px; }
-        
-        a { color: inherit; transition: color 0.3s ease; }
-        a:hover { color: var(--text-rust); }
-
-        /* --- 4. NAVIGATION --- */
+        /* --- 3. NAVIGATION (Top Menu) --- */
         nav {
-            position: fixed;
-            top: 0; width: 100%;
-            background-color: var(--bg-color);
-            border-bottom: 1px solid var(--text-navy);
-            z-index: 1000;
-            height: 70px;
-            display: flex; align-items: center;
+            width: 100%;
+            padding-top: 3rem; /* Space from top */
+            z-index: 10;
         }
 
         .nav-container {
-            width: 100%; max-width: 1200px; margin: 0 auto;
-            display: flex; justify-content: center; align-items: center;
-            padding: 0 1.5rem;
+            display: flex;
+            justify-content: center; /* Center items horizontally */
+            gap: 5vw; /* Fluid spacing between links */
+            width: 100%;
+            padding: 0 1rem;
         }
-
-        .nav-links-wrapper { display: flex; gap: 2rem; }
 
         .nav-link {
             text-decoration: none;
-            color: var(--text-navy);
-            font-size: 1.3rem; 
+            color: #ffffff; /* White text for contrast against the photo */
+            font-family: 'Gelosa Cara', sans-serif;
+            font-size: 1.4rem; 
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: opacity 0.3s ease;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3); /* Soft shadow for readability */
         }
 
-        .hamburger {
-            display: none;
-            background: none; border: none;
-            font-size: 2rem; color: var(--text-navy);
-            cursor: pointer; margin-left: auto;
+        .nav-link:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+            text-underline-offset: 5px;
         }
 
-        /* --- 5. LAYOUT & SECTIONS --- */
-        main {
-            padding-top: 70px;
-            min-height: 100vh;
-            display: flex; flex-direction: column; align-items: center;
-        }
-
-        section {
-            width: 100%; max-width: 1100px;
-            padding: var(--spacing-lg) var(--spacing-sm);
-        }
-
-        /* --- 6. ADAPTIVE POSTCARD --- */
-        .postcard-wrapper {
-            display: flex; justify-content: center; align-items: center;
-            min-height: 85vh;
-            padding: var(--spacing-sm);
-        }
-
-        .postcard {
-            background-color: var(--bg-color);
-            width: 100%; max-width: 1000px;
-            /* Adaptive Aspect Ratio: 3/2 on desktop, auto on mobile */
-            aspect-ratio: 3/2; 
-            border: 1px solid rgba(0,0,0,0.1);
-            box-shadow: 10px 10px 30px rgba(0,0,0,0.1);
+        /* --- 4. CENTER NAMES --- */
+        .hero-section {
+            flex-grow: 1;
             display: flex;
-            position: relative;
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 5rem; /* Visual balance */
         }
 
-        /* --- POSTCARD ELEMENTS --- */
-        .card-left, .card-right {
-            flex: 1;
-            padding: var(--spacing-md);
-            display: flex; flex-direction: column; justify-content: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .divider {
-            position: absolute;
-            left: 50%; top: 10%; bottom: 10%;
-            width: 1px; background-color: var(--text-navy);
-            transform: translateX(-50%);
-            z-index: 0;
-        }
-
-        .shell-icon {
-            position: absolute;
-            left: 50%; top: 50%;
-            transform: translate(-50%, -50%);
-            width: 60px; height: auto;
-            background-color: var(--bg-color);
-            padding: 10px 0;
-            z-index: 2;
-        }
-
-        /* Typography - Fluid Scaling */
-        .stamp-mark {
-            position: absolute;
-            top: 40px; left: 40px;
-            color: var(--text-rust);
-            font-size: clamp(2rem, 4vw, 3.5rem);
-            transform: rotate(-15deg);
-            line-height: 1;
-            width: fit-content;
-        }
-
-        .couple-names {
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            line-height: 0.9;
+        .hero-names {
+            font-family: 'Brush Script Std', cursive;
+            font-size: clamp(4rem, 8vw, 9rem); /* Fluid sizing: min 4rem, max 9rem */
+            color: #ffffff;
             text-align: center;
-            margin-top: 2rem;
-            width: 100%;
+            line-height: 1.1;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            font-weight: normal;
         }
 
-        .location-footer {
-            position: absolute;
-            bottom: 25px; left: 40px;
-            font-size: clamp(0.7rem, 1vw, 0.9rem);
-            font-style: italic;
-        }
-
-        .event-title {
-            font-size: clamp(3rem, 6vw, 5rem);
-            line-height: 0.9;
-            color: var(--text-navy);
-            margin-bottom: 0.5rem;
-        }
-
-        .event-date {
-            font-size: clamp(1.5rem, 2.5vw, 2.2rem);
-            color: var(--text-navy);
-        }
-
-        .year-row {
-            display: flex; justify-content: space-between; align-items: baseline;
-            font-size: clamp(1.2rem, 2vw, 1.8rem);
-            margin-top: 5px;
-        }
-
-        .address-lines { margin-top: 2rem; width: 100%; }
-        .line {
-            height: 1px; background-color: var(--text-navy);
-            margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
-            width: 100%;
-        }
-        
-        .whale-icon { text-align: center; font-size: 1.5rem; margin-top: -1rem; }
-
-        /* --- ITINERARY & OTHER SECTIONS --- */
-        .section-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            text-align: center;
-            border-bottom: 1px solid var(--text-navy);
-            padding-bottom: 1rem;
-            display: inline-block;
-            margin-bottom: 0.5rem;
-            color: var(--text-rust);
-        }
-        
-        .section-subtitle {
-            text-align: center; font-size: clamp(1.2rem, 2vw, 1.5rem);
-            margin-bottom: 3rem; text-transform: uppercase;
-        }
-
-        .timeline-item {
-            display: flex; margin-bottom: 2.5rem;
-            border-left: 2px solid var(--text-rust);
-            padding-left: 2rem;
-        }
-        
-        .time {
-            font-weight: bold; min-width: 100px;
-            color: var(--text-rust); font-size: 1.5rem;
-            font-family: var(--font-heading);
-        }
-
-        .recommendations-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .rec-card {
-            border: 1px solid var(--text-navy);
-            padding: 2rem;
-            transition: transform 0.2s;
-            background: rgba(255,255,255,0.4);
-        }
-        .rec-card h3 { font-size: 2rem; margin-bottom: 0.5rem; color: var(--text-navy); }
-        .rec-card span { 
-            display: block; font-size: 0.9rem; color: var(--text-rust);
-            margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 2px;
-        }
-
-        /* --- 7. RESPONSIVE BREAKPOINTS --- */
-        
-        /* TABLET & MOBILE (Max Width 900px) */
-        @media (max-width: 900px) {
-            /* Fix Navigation */
-            .nav-container { justify-content: flex-end; }
-            .hamburger { display: block; }
-            
-            .nav-links-wrapper {
-                position: absolute; top: 70px; left: 0; width: 100%;
-                background-color: var(--bg-color);
-                flex-direction: column; align-items: center;
-                gap: 2rem; padding: 2rem 0;
-                border-bottom: 1px solid var(--text-navy);
-                display: none; /* Hidden by default */
-            }
-            .nav-links-wrapper.open { display: flex; }
-
-            /* Fix Postcard Layout - Switch to Stacked */
-            .postcard {
+        /* --- 5. MOBILE RESPONSIVENESS --- */
+        @media (max-width: 768px) {
+            .nav-container {
                 flex-direction: column;
-                aspect-ratio: auto;
-                height: auto;
-                margin-top: 0;
-            }
-
-            .postcard-wrapper { padding: 1rem 0; align-items: flex-start; }
-
-            /* Reset Divider to Horizontal */
-            .divider {
-                width: 80%; height: 1px;
-                top: auto; bottom: auto; left: 50%;
-                position: relative;
-                transform: translateX(-50%);
-                margin: 0;
-            }
-
-            /* Reset Shell Icon */
-            .shell-icon {
-                position: relative;
-                top: auto; left: auto;
-                transform: none;
-                margin: -31px auto 0 auto; /* Half height overlap */
-                display: block;
-            }
-
-            /* Un-scramble Content */
-            .card-left, .card-right {
-                width: 100%;
-                text-align: center;
-                padding: 3rem 1.5rem;
-            }
-
-            .stamp-mark {
-                position: relative;
-                top: auto; left: auto;
-                margin: 0 auto 1rem auto;
-                transform: rotate(-5deg);
-                text-align: center;
-            }
-
-            .location-footer {
-                position: relative;
-                bottom: auto; left: auto;
-                margin-top: 2rem;
-                text-align: center;
-                width: 100%;
-            }
-
-            /* Stack Timeline */
-            .timeline-item {
-                flex-direction: column;
-                border-left: none; border-top: 2px solid var(--text-rust);
-                padding-left: 0; padding-top: 1rem;
-                text-align: center;
                 align-items: center;
+                gap: 1.5rem;
+                padding-top: 1rem;
             }
-            .time { margin-bottom: 0.5rem; }
-        }
-
-        /* RSVP Form */
-        .rsvp-form {
-            display: flex; flex-direction: column; gap: 1rem;
-            max-width: 500px; margin: 0 auto;
-        }
-        .rsvp-form input, .rsvp-form button {
-            padding: 1rem; border: 1px solid var(--text-navy);
-            font-family: var(--font-body); background: transparent; font-size: 1rem;
-        }
-        .rsvp-form button {
-            background-color: var(--text-rust); color: white;
-            font-family: var(--font-heading); font-size: 1.5rem;
-            cursor: pointer; border: none;
-        }
-
-        /* Footer */
-        footer {
-            background: repeating-linear-gradient(90deg, var(--text-navy), var(--text-navy) 40px, var(--text-rust) 40px, var(--text-rust) 80px);
-            height: 100px; width: 100%;
-            display: flex; justify-content: center; align-items: center;
-        }
-        .footer-content {
-            background: var(--bg-color); padding: 10px 30px;
-            border: 1px solid var(--text-navy);
-            font-family: var(--font-heading); letter-spacing: 2px;
+            
+            .nav-link {
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
@@ -364,142 +119,16 @@
 
     <nav>
         <div class="nav-container">
-            <button class="hamburger" aria-label="Menu" onclick="toggleMenu()">☰</button>
-            <div class="nav-links-wrapper" id="navLinks">
-                <a href="#home" class="nav-link" onclick="toggleMenu()">Home</a>
-                <a href="#itinerario" class="nav-link" onclick="toggleMenu()">Itinerario</a>
-                <a href="#hoteles" class="nav-link" onclick="toggleMenu()">Hoteles</a>
-                <a href="#restaurantes" class="nav-link" onclick="toggleMenu()">Restaurantes</a>
-                <a href="#rsvp" class="nav-link" onclick="toggleMenu()">RSVP</a>
-            </div>
+            <a href="#" class="nav-link">Home</a>
+            <a href="#" class="nav-link">Itinerario</a>
+            <a href="#" class="nav-link">Recomendaciones</a>
+            <a href="#" class="nav-link">RSVP</a>
         </div>
     </nav>
 
-    <main>
-        <section id="home" class="postcard-wrapper">
-            <div class="postcard">
-                <div class="card-left">
-                    <div class="stamp-mark">Los Cabos</div>
-                    <div class="couple-names">Daniela y Alfonso</div>
-                    <div class="location-footer">Punta Ballena - Los Cabos Baja California Sur</div>
-                </div>
-
-                <div class="divider"></div>
-                <img src="shell.png" alt="Shell" class="shell-icon" onerror="this.style.display='none'; document.querySelector('.shell-placeholder').style.display='block';">
-                <div class="shell-placeholder shell-icon" style="display:none;">🐚</div>
-
-                <div class="card-right">
-                    <div class="event-details">
-                        <div class="event-title">Boda Civil</div>
-                        <div class="event-date">Domingo 15 de Febrero</div>
-                        <div class="year-row">
-                            <span style="font-family: 'Futura Light', sans-serif;">DEL</span>
-                            <span>2026</span>
-                        </div>
-                    </div>
-
-                    <div class="address-lines">
-                        <div class="line"></div>
-                        <div class="line"></div>
-                        <div class="line"></div>
-                        <div class="line"></div>
-                    </div>
-                    <div class="whale-icon">🐳</div>
-                </div>
-            </div>
-        </section>
-
-        <section id="itinerario">
-            <div class="center-wrapper">
-                <h2 class="section-title">Itinerario</h2>
-                <div class="section-subtitle">Domingo 15 de Febrero</div>
-            </div>
-            
-            <div class="timeline-item">
-                <div class="time">1:30 PM</div>
-                <div class="details">
-                    <h3>Ceremonia Boda Civil</h3>
-                    <p><a href="https://maps.app.goo.gl/LgZ9CgJLvcAJneKB7" target="_blank" class="map-link">Villa 111, Punta Ballena</a></p>
-                </div>
-            </div>
-            
-            <div class="timeline-item">
-                <div class="time">3:00 PM</div>
-                <div class="details">
-                    <h3>Recepción y Banquete</h3>
-                    <p><a href="https://maps.app.goo.gl/6V9LXSiuEZsgcLdUA" target="_blank" class="map-link">Toro Latin Kitchen</a></p>
-                </div>
-            </div>
-
-            <div class="transport-note">*Habrá transporte de la ceremonia civil al banquete</div>
-        </section>
-
-        <section id="hoteles">
-            <div class="center-wrapper">
-                <h2 class="section-title">Where to Stay</h2>
-                <p style="margin-bottom: 2rem;">Hemos seleccionado algunas opciones para su comodidad.</p>
-            </div>
-            <div class="recommendations-grid">
-                <div class="rec-card">
-                    <h3>The Cape</h3><span>A Thompson Hotel</span>
-                    <p>Lujo moderno con vistas al famoso Arco. Ideal para quienes buscan un ambiente vibrante.</p>
-                </div>
-                <div class="rec-card">
-                    <h3>Esperanza</h3><span>Auberge Resorts</span>
-                    <p>El lugar de la recepción. Un escape privado con playas hermosas y servicio de primera.</p>
-                </div>
-                <div class="rec-card">
-                    <h3>Hotel El Ganzo</h3><span>San José del Cabo</span>
-                    <p>Una opción artística y boutique cerca de la marina.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="restaurantes">
-            <div class="center-wrapper">
-                <h2 class="section-title">Restaurantes</h2>
-                <p style="margin-bottom: 2rem;">Nuestros lugares favoritos para comer en Baja.</p>
-            </div>
-            <div class="recommendations-grid">
-                <div class="rec-card">
-                    <h3>Flora Farms</h3><span>Farm to Table</span>
-                    <p>Una experiencia culinaria en una granja orgánica. Imprescindible reservar.</p>
-                </div>
-                <div class="rec-card">
-                    <h3>Acre Baja</h3><span>Cocktails & Dinner</span>
-                    <p>Ambiente selvático chic con excelente mixología.</p>
-                </div>
-                <div class="rec-card">
-                    <h3>El Farallon</h3><span>Seafood</span>
-                    <p>Cena sobre los acantilados escuchando las olas romper.</p>
-                </div>
-            </div>
-        </section>
-        
-        <section id="rsvp">
-             <div class="center-wrapper">
-                <h2 class="section-title">RSVP</h2>
-                <p style="margin-bottom: 2rem;">Por favor confirmar asistencia antes del 1 de Enero.</p>
-            </div>
-            <form class="rsvp-form">
-                <input type="text" placeholder="Nombre Completo">
-                <input type="email" placeholder="Email">
-                <button type="button">Confirmar</button>
-            </form>
-        </section>
-
-    </main>
-
-    <footer>
-        <div class="footer-content">ALFONSO Y DANIELA • 2026</div>
-    </footer>
-
-    <script>
-        function toggleMenu() {
-            const navLinks = document.getElementById('navLinks');
-            navLinks.classList.toggle('open');
-        }
-    </script>
+    <section class="hero-section">
+        <h1 class="hero-names">Daniela y Alfonso</h1>
+    </section>
 
 </body>
 </html>
