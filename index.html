@@ -9,7 +9,7 @@
         
         @font-face {
             font-family: 'Gelosa Cara';
-            /* Using the Condensed file available in your folder */
+            /* Preserved your change: GelosaCara.otf */
             src: url('Fonts/GelosaCara.otf') format('opentype');
             font-weight: normal;
             font-style: normal;
@@ -59,15 +59,17 @@
             justify-content: center;
             gap: 5vw;
             width: 100%;
-            padding: 0 1rem;
+            /* Modified padding: 0 top, 1rem right, 1rem bottom, 1rem left */
+            padding: 0 1rem 1rem 1rem; 
+            /* Added the 1px fixed line matching the font color */
+            border-bottom: 1px solid #efe9dc; 
         }
 
         .nav-link {
             text-decoration: none;
-            /* UPDATED COLOR */
             color: #efe9dc; 
             font-family: 'Gelosa Cara', sans-serif;
-            font-size: 3rem; 
+            font-size: 3rem; /* Preserved your change */
             text-transform: uppercase;
             letter-spacing: 2px;
             transition: opacity 0.3s ease;
@@ -91,8 +93,7 @@
 
         .hero-names {
             font-family: 'Brush Script Std', cursive;
-            /* UPDATED SIZE AND COLOR */
-            font-size: 3.5rem; 
+            font-size: 3.5rem; /* Preserved your change */
             color: #efe9dc;
             text-align: center;
             line-height: 1.1;
@@ -110,12 +111,11 @@
             }
             
             .nav-link {
-                font-size: 1.2rem;
+                font-size: 1.5rem; /* Adjusted slightly for mobile fitting */
             }
             
-            /* Optional: Adjust name size for very small screens if 96px is too wide */
             .hero-names {
-                font-size: clamp(60px, 10vw, 96px);
+                font-size: clamp(40px, 10vw, 3.5rem);
             }
         }
     </style>
