@@ -6,10 +6,10 @@
     <title>Daniela y Alfonso | Los Cabos</title>
     <style>
         /* --- 1. FONT DECLARATIONS --- */
-        /* Note: Paths point to the 'Fonts' folder as requested */
         
         @font-face {
             font-family: 'Gelosa Cara';
+            /* Using the Condensed file available in your folder */
             src: url('Fonts/GelosaCara-RegularCondensed.otf') format('opentype');
             font-weight: normal;
             font-style: normal;
@@ -32,16 +32,14 @@
         body {
             height: 100vh;
             width: 100%;
-            overflow: hidden; /* Lock scroll for the landing page look */
+            overflow: hidden; 
             
-            /* Background Image Setup */
-            /* Pointing to the 'Photos' folder */
+            /* Background Image */
             background-image: url('Photos/VIEW_buena.png');
-            background-size: cover;      /* Ensures image covers full screen */
-            background-position: center; /* Centers the image */
+            background-size: cover;
+            background-position: center;
             background-repeat: no-repeat;
             
-            /* Fallback color while image loads */
             background-color: #a4b0be; 
             
             display: flex;
@@ -52,27 +50,28 @@
         /* --- 3. NAVIGATION (Top Menu) --- */
         nav {
             width: 100%;
-            padding-top: 3rem; /* Space from top */
+            padding-top: 3rem;
             z-index: 10;
         }
 
         .nav-container {
             display: flex;
-            justify-content: center; /* Center items horizontally */
-            gap: 5vw; /* Fluid spacing between links */
+            justify-content: center;
+            gap: 5vw;
             width: 100%;
             padding: 0 1rem;
         }
 
         .nav-link {
             text-decoration: none;
-            color: #ffffff; /* White text for contrast against the photo */
+            /* UPDATED COLOR */
+            color: #efe9dc; 
             font-family: 'Gelosa Cara', sans-serif;
             font-size: 1.4rem; 
             text-transform: uppercase;
             letter-spacing: 2px;
             transition: opacity 0.3s ease;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.3); /* Soft shadow for readability */
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
 
         .nav-link:hover {
@@ -87,13 +86,14 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding-bottom: 5rem; /* Visual balance */
+            padding-bottom: 5rem; 
         }
 
         .hero-names {
             font-family: 'Brush Script Std', cursive;
-            font-size: clamp(4rem, 8vw, 9rem); /* Fluid sizing: min 4rem, max 9rem */
-            color: #ffffff;
+            /* UPDATED SIZE AND COLOR */
+            font-size: 96px; 
+            color: #efe9dc;
             text-align: center;
             line-height: 1.1;
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
@@ -111,6 +111,11 @@
             
             .nav-link {
                 font-size: 1.2rem;
+            }
+            
+            /* Optional: Adjust name size for very small screens if 96px is too wide */
+            .hero-names {
+                font-size: clamp(60px, 10vw, 96px);
             }
         }
     </style>
