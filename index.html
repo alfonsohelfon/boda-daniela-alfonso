@@ -208,7 +208,7 @@
         #recomendaciones {
             min-height: 100vh;
             width: 100%;
-            background-color: #d1c9b8; /* Same Beige as Itinerary */
+            background-color: #d1c9b8; 
             padding: 8rem 1rem 4rem 1rem;
             display: flex;
             flex-direction: column;
@@ -241,14 +241,14 @@
         }
 
         .cat-icon {
-            width: 120px; /* Adjust graphic size */
+            width: 120px; 
             height: auto;
             margin-bottom: 1.5rem;
         }
 
         .cat-title {
             font-family: 'Gelosa Cara', serif;
-            color: #2c446c; /* Navy Blue */
+            color: #2c446c; 
             font-size: 2.5rem;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -260,11 +260,10 @@
             width: 100%;
             max-width: 800px;
             text-align: center;
-            display: none; /* Hidden by default */
+            display: none; 
             animation: fadeIn 0.5s ease;
         }
         
-        /* Animation */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -295,7 +294,7 @@
 
         .rec-note {
             font-family: 'Futura', sans-serif;
-            color: #fdfbf8; /* Off-White to match Itinerary */
+            color: #fdfbf8; 
             font-size: 1.1rem;
             letter-spacing: 0.5px;
             text-transform: uppercase;
@@ -423,27 +422,22 @@
         </div>
 
         <div id="hospedaje" class="rec-content-container">
-            
             <div class="rec-item">
                 <a href="https://www.haciendadelmar.com.mx/book/accommodations" target="_blank" class="rec-link">Hacienda Del Mar</a>
                 <div class="rec-note">~10 minutos en coche del evento</div>
             </div>
-
             <div class="rec-item">
                 <a href="https://www.fiestamericanatravelty.com/grand-fiesta-americana/hoteles/grand-fiesta-americana-los-cabos-all-inclusive-golf-and-spa" target="_blank" class="rec-link">Grand Fiesta Americana</a>
                 <div class="rec-note">~10 minutos en coche del evento</div>
             </div>
-
             <div class="rec-item">
                 <a href="https://www.hyatt.com/shop/rooms/CSLTH?rooms=1&adults=2&checkinDate=2026-02-13&checkoutDate=2026-02-16&kids=0&currency=USD" target="_blank" class="rec-link">The Cape, A Thompson Hotel</a>
                 <div class="rec-note">~5 minutos en coche del evento</div>
             </div>
-
             <div class="rec-item">
                 <a href="https://auberge.com/esperanza/" target="_blank" class="rec-link">Esperanza, Auberge Collection</a>
                 <div class="rec-note">~1 minuto en coche del evento</div>
             </div>
-
             <div class="rec-footer-note">
                 * En Los Cabos hay muchas buenas opciones y fácil movilidad en Uber, pero estas son nuestras recomendaciones por la cercanía
             </div>
@@ -451,7 +445,19 @@
 
         <div id="restaurantes" class="rec-content-container">
             <div class="rec-item">
-                <div class="rec-note">Próximamente...</div>
+                <a href="https://www.flora-farms.com/" target="_blank" class="rec-link">Flora Farms</a>
+            </div>
+            <div class="rec-item">
+                <a href="https://www.waldorfastorialoscabospedregal.com/culinary/el-farallon/" target="_blank" class="rec-link">El Farallón</a>
+            </div>
+            <div class="rec-item">
+                <a href="https://elhuertorestaurant.com/" target="_blank" class="rec-link">El Huerto Farm To Table</a>
+            </div>
+            <div class="rec-item">
+                <a href="https://www.montage.com/loscabos/dining/talay-thai-kitchen/" target="_blank" class="rec-link">Talay</a>
+            </div>
+            <div class="rec-item">
+                <a href="https://auberge.com/chileno-bay/dine/comal/" target="_blank" class="rec-link">Comal</a>
             </div>
         </div>
 
@@ -491,10 +497,6 @@
                 target.classList.add('active');
             }
         }
-        
-        // Optional: Open 'hospedaje' by default? 
-        // Uncomment the line below if you want Hospedaje visible immediately on load
-        // openCategory('hospedaje');
     </script>
 
 </body>
