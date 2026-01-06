@@ -215,7 +215,6 @@
             align-items: center;
         }
 
-        /* Category Selector Row */
         .categories-wrapper {
             display: flex;
             justify-content: center;
@@ -255,7 +254,6 @@
             text-align: center;
         }
 
-        /* Content Display Area */
         .rec-content-container {
             width: 100%;
             max-width: 800px;
@@ -273,7 +271,6 @@
             display: block;
         }
 
-        /* Recommendation Items */
         .rec-item {
             margin-bottom: 3rem;
         }
@@ -309,6 +306,95 @@
             border-top: 1px solid #2c446c;
             padding-top: 1rem;
             display: inline-block;
+        }
+
+        /* --- 7. SECTION: RSVP --- */
+        #rsvp {
+            min-height: 100vh;
+            width: 100%;
+            background-color: #d1c9b8;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 8rem 1rem 4rem 1rem;
+            overflow: hidden; /* Prevents postcards from creating scrollbars if they stick out */
+        }
+
+        /* Decorative Images (Postcards) */
+        .rsvp-postcard-left {
+            position: absolute;
+            left: -5%; /* Pulls it slightly off screen like screenshot */
+            top: 15%;
+            width: 40vw;
+            max-width: 550px;
+            transform: rotate(10deg); /* Tilt right */
+            z-index: 1;
+        }
+
+        .rsvp-postcard-right {
+            position: absolute;
+            right: -5%;
+            top: 20%;
+            width: 40vw;
+            max-width: 550px;
+            transform: rotate(-10deg); /* Tilt left */
+            z-index: 1;
+        }
+
+        /* Form Container */
+        .rsvp-content {
+            position: relative;
+            z-index: 2; /* Sits on top of images */
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .rsvp-title {
+            font-family: 'Gelosa Cara', serif;
+            font-size: 3rem;
+            color: #2c446c;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        .rsvp-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            width: 100%;
+        }
+
+        .rsvp-input {
+            width: 100%;
+            padding: 15px;
+            background-color: transparent;
+            border: 1px solid #2c446c;
+            color: #2c446c;
+            font-family: 'Futura', sans-serif;
+            font-size: 1rem;
+            text-transform: uppercase;
+            outline: none;
+        }
+        
+        .rsvp-input::placeholder {
+            color: #2c446c;
+            opacity: 0.7;
+        }
+        
+        .rsvp-input:focus {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .rsvp-footer-text {
+            margin-top: 3rem;
+            color: #2c446c;
+            font-family: 'Futura', sans-serif;
+            font-size: 0.8rem;
+            line-height: 1.5;
+            text-transform: uppercase;
         }
 
 
@@ -351,6 +437,31 @@
             .rec-link {
                 font-size: 1.5rem;
             }
+
+            /* RSVP Mobile: Stack everything nicely */
+            #rsvp {
+                justify-content: flex-start; /* Align top so scrolling works */
+            }
+            
+            .rsvp-postcard-left, .rsvp-postcard-right {
+                position: relative;
+                width: 80%;
+                left: auto;
+                right: auto;
+                top: auto;
+                transform: none; /* Remove tilt for cleaner mobile stack */
+                margin-bottom: 2rem;
+            }
+            
+            .rsvp-content {
+                order: 2; /* Put form in middle if needed, or adjust order */
+                margin-bottom: 3rem;
+            }
+            
+            /* Order: Image 1, Form, Image 2 */
+            .rsvp-postcard-left { order: 1; transform: rotate(5deg); margin-bottom: 2rem; }
+            .rsvp-content { order: 2; }
+            .rsvp-postcard-right { order: 3; transform: rotate(-5deg); margin-top: 2rem; }
         }
     </style>
 </head>
@@ -464,6 +575,28 @@
         <div id="actividades" class="rec-content-container">
             <div class="rec-item">
                 <div class="rec-note">Próximamente...</div>
+            </div>
+        </div>
+
+    </section>
+
+    <section id="rsvp">
+        
+        <img src="Photos/graphicsweb-08.png" alt="Postcard Left" class="rsvp-postcard-left">
+        
+        <img src="Photos/graphicsweb-07.png" alt="Postcard Right" class="rsvp-postcard-right">
+
+        <div class="rsvp-content">
+            <h2 class="rsvp-title">RSVP</h2>
+            
+            <form class="rsvp-form">
+                <input type="text" placeholder="NOMBRE COMPLETO" class="rsvp-input">
+                <input type="email" placeholder="E-MAIL" class="rsvp-input">
+            </form>
+            
+            <div class="rsvp-footer-text">
+                PORFAVOR CONFIRMAR ASISTENCIA ANTES DEL X DE ENERO<br>
+                SI TIENES +1, FAVOR DE ESCRIBIR SU NOMBRE Y CORREO
             </div>
         </div>
 
