@@ -163,7 +163,7 @@
             display: flex;
             flex-direction: row;
             justify-content: center;
-            /* CHANGED: Gap set exactly to 1.2rem */
+            /* CHANGED: Gap set to 1.2rem */
             gap: 1.2rem; 
             width: 100%;
             margin-top: 1rem;
@@ -171,12 +171,12 @@
         
         /* Individual column styling */
         .event-col {
+            /* CHANGED: flex: 0 1 auto ensures columns don't grow wider than text */
+            flex: 0 1 auto;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            /* Added explicit width auto to ensure they don't stretch */
-            width: auto;
         }
 
         .event-details {
