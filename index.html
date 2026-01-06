@@ -43,24 +43,25 @@
             overflow-x: hidden;
         }
 
-        /* --- 3. NAVIGATION (FIXED & IMPROVED) --- */
+        /* --- 3. NAVIGATION --- */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 1rem 0; /* Adjusted padding */
+            padding: 1rem 0;
             z-index: 1000;
             transition: background 0.3s ease;
         }
 
         .nav-container {
             display: flex;
-            justify-content: center; /* Default center for desktop */
+            justify-content: center;
             align-items: center;
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 1.5rem 1rem 1.5rem; /* Padding creates space above the border */
+            /* Padding creates space so hamburger sits above the border */
+            padding: 0 1.5rem 1rem 1.5rem; 
             border-bottom: 1px solid rgba(239, 233, 220, 0.5); 
             transition: border-color 0.3s ease;
             position: relative;
@@ -90,7 +91,7 @@
             text-underline-offset: 5px;
         }
 
-        /* Hamburger Button (Hidden on Desktop) */
+        /* Hamburger Button */
         .hamburger {
             display: none;
             background: none;
@@ -123,7 +124,7 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-color: #a4b0be; 
+            background-color: #a4b0be; /* Desktop fallback */
             
             display: flex;
             flex-direction: column;
@@ -412,18 +413,18 @@
         }
 
 
-        /* --- MOBILE RESPONSIVENESS (UPDATED) --- */
+        /* --- MOBILE RESPONSIVENESS --- */
         @media (max-width: 900px) {
             
-            /* 1. Hamburger Menu Logic (Above Line) */
+            /* 1. Hamburger Menu Logic */
             .nav-container {
-                justify-content: flex-end; /* Pushes content (hamburger) to the right */
+                justify-content: flex-end; 
                 position: relative;
             }
 
             .hamburger { 
                 display: block; 
-                margin-left: auto; /* Ensures it sits on the right */
+                margin-left: auto;
             }
 
             .nav-links-wrapper {
@@ -449,15 +450,18 @@
 
             .nav-link { font-size: 1.8rem; }
 
-            /* 2. Hero Section (Fit Background) */
+            /* 2. Hero Section (Seamless Black Background) */
             #home {
-                background-size: contain; /* Shows full binocular image */
-                background-position: center center;
+                background-size: contain; 
+                background-position: center;
+                background-repeat: no-repeat;
+                /* This is the key fix: Black bg blends with the binocular image mask */
+                background-color: #000000; 
             }
             
             .hero-names {
-                font-size: clamp(1.8rem, 6vw, 3rem); /* Smaller font to fit in view */
-                margin-top: 0; /* Centered in the view */
+                font-size: clamp(1.8rem, 6vw, 3rem); 
+                margin-top: 0; 
             }
 
             /* 3. General Layouts */
