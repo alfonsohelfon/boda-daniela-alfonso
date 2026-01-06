@@ -41,6 +41,7 @@
         body {
             width: 100%;
             overflow-x: hidden;
+            background-color: #d1c9b8; /* Seamless beige background behind everything */
         }
 
         /* --- 3. NAVIGATION --- */
@@ -60,14 +61,12 @@
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            /* Padding creates space so hamburger sits above the border */
             padding: 0 1.5rem 1rem 1.5rem; 
             border-bottom: 1px solid rgba(239, 233, 220, 0.5); 
             transition: border-color 0.3s ease;
             position: relative;
         }
 
-        /* Links Container */
         .nav-links-wrapper {
             display: flex;
             gap: 5vw;
@@ -91,7 +90,6 @@
             text-underline-offset: 5px;
         }
 
-        /* Hamburger Button */
         .hamburger {
             display: none;
             background: none;
@@ -118,18 +116,25 @@
 
         /* --- 4. SECTION: HOME --- */
         #home {
-            height: 100vh;
+            position: relative;
             width: 100%;
+            /* Desktop Default: Use background image logic */
+            height: 100vh;
             background-image: url('Photos/VIEW_buena.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-color: #a4b0be; /* Desktop fallback */
+            background-color: #a4b0be;
             
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+        }
+
+        /* The actual image tag is hidden on desktop */
+        .mobile-hero-image {
+            display: none;
         }
 
         .hero-names {
@@ -142,11 +147,13 @@
             font-weight: normal;
             margin-top: 10vh;
             padding: 0 1rem;
+            z-index: 2; /* Ensure text sits on top */
         }
 
 
         /* --- 5. SECTION: ITINERARIO --- */
         #itinerario {
+            /* Removed min-height 100vh to allow natural flow from image */
             min-height: 100vh;
             width: 100%;
             background-color: #d1c9b8; 
@@ -257,7 +264,7 @@
             cursor: pointer;
             transition: transform 0.2s ease, opacity 0.3s ease;
             width: 250px; 
-            order: 1; /* Desktop: Top row */
+            order: 1; 
         }
 
         .category-header:hover {
@@ -284,7 +291,7 @@
             width: 100%;
             text-align: center;
             display: none; 
-            order: 2; /* Desktop: Bottom row */
+            order: 2; 
             margin-top: 2rem;
             animation: fadeIn 0.5s ease;
         }
@@ -413,13 +420,12 @@
         }
 
 
-        /* --- MOBILE RESPONSIVENESS --- */
+        /* --- MOBILE RESPONSIVENESS (UPDATED) --- */
         @media (max-width: 900px) {
             
             /* 1. Hamburger Menu Logic */
             .nav-container {
                 justify-content: flex-end; 
-                position: relative;
             }
 
             .hamburger { 
@@ -450,21 +456,44 @@
 
             .nav-link { font-size: 1.8rem; }
 
-            /* 2. Hero Section (Seamless Black Background) */
+            /* 2. HERO SECTION FIX FOR MOBILE 
+               This is the key change to remove gray bars and push content up.
+            */
             #home {
-                background-size: contain; 
-                background-position: center;
-                background-repeat: no-repeat;
-                /* This is the key fix: Black bg blends with the binocular image mask */
-                background-color: #000000; 
-            }
-            
-            .hero-names {
-                font-size: clamp(1.8rem, 6vw, 3rem); 
-                margin-top: 0; 
+                display: block; /* Remove flexbox centering */
+                height: auto;   /* Auto height based on image */
+                min-height: unset;
+                background: none; /* Disable background image */
+                background-color: #000; /* Black background to blend with vignette if needed */
+                padding-top: 0; /* Ensure no padding pushes it down */
             }
 
-            /* 3. General Layouts */
+            /* Show the actual image tag on mobile */
+            .mobile-hero-image {
+                display: block;
+                width: 100%;
+                height: auto;
+                display: block; /* Removes bottom space of inline elements */
+            }
+            
+            /* Center the text over the image */
+            .hero-names {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 100%;
+                margin: 0;
+                font-size: clamp(1.8rem, 6vw, 3rem); 
+            }
+
+            /* 3. ITINERARY ADJUSTMENT */
+            #itinerario {
+                /* Reduced top padding so it sits closer to image */
+                padding-top: 4rem; 
+                min-height: unset; /* Allow it to be naturally sized */
+            }
+
             .date-title { font-size: 2.2rem; }
             .events-row { flex-direction: column; gap: 2rem; }
 
@@ -524,6 +553,8 @@
     </nav>
 
     <section id="home">
+        <img src="Photos/VIEW_buena.png" alt="Daniela y Alfonso" class="mobile-hero-image">
+        
         <h1 class="hero-names">Daniela y Alfonso</h1>
     </section>
 
