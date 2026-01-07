@@ -124,7 +124,6 @@
             background-position: center;
             background-repeat: no-repeat;
             background-color: #a4b0be;
-            
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -188,7 +187,6 @@
             margin-bottom: 0.5rem;
         }
 
-        /* NEW: Class for the numbers only */
         .date-number {
             font-family: 'Futura', sans-serif;
         }
@@ -413,6 +411,36 @@
         .rsvp-input::placeholder { color: #2c446c; opacity: 0.7; }
         .rsvp-input:focus { background-color: rgba(255,255,255,0.1); }
 
+        /* Button Styling */
+        .rsvp-button {
+            width: 100%;
+            padding: 15px;
+            background-color: #2c446c;
+            color: #efe9dc;
+            border: 1px solid #2c446c;
+            font-family: 'Gelosa Cara', serif;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            margin-top: 1rem;
+        }
+
+        .rsvp-button:hover {
+            background-color: transparent;
+            color: #2c446c;
+        }
+        
+        /* Message styling */
+        #form-message {
+            margin-top: 1rem;
+            font-family: 'Futura', sans-serif;
+            color: #2c446c;
+            font-size: 1.1rem;
+            display: none; /* Hidden by default */
+        }
+
         .rsvp-footer-text {
             margin-top: 3rem;
             color: #2c446c;
@@ -426,111 +454,52 @@
         /* --- MOBILE RESPONSIVENESS --- */
         @media (max-width: 900px) {
             
-            /* 1. Hamburger Menu Logic */
-            .nav-container {
-                justify-content: flex-end; 
-                position: relative;
-            }
-
-            .hamburger { 
-                display: block; 
-                margin-left: auto;
-            }
-
+            /* Hamburger Logic */
+            .nav-container { justify-content: flex-end; position: relative; }
+            .hamburger { display: block; margin-left: auto; }
             .nav-links-wrapper {
-                position: absolute;
-                top: 100%; 
-                left: 0;
-                width: 100%;
+                position: absolute; top: 100%; left: 0; width: 100%;
                 background-color: rgba(164, 176, 190, 0.95); 
-                flex-direction: column;
-                align-items: center;
-                gap: 2rem;
-                padding: 2rem 0;
-                max-height: 0;
-                overflow: hidden;
-                opacity: 0;
+                flex-direction: column; align-items: center; gap: 2rem; padding: 2rem 0;
+                max-height: 0; overflow: hidden; opacity: 0;
                 border-bottom: 1px solid #2c446c;
             }
-
-            .nav-links-wrapper.active {
-                max-height: 500px;
-                opacity: 1;
-            }
-
+            .nav-links-wrapper.active { max-height: 500px; opacity: 1; }
             .nav-link { font-size: 1.8rem; }
 
-            /* 2. HERO SECTION FIX FOR MOBILE */
+            /* Hero Fix */
             #home {
-                display: block; 
-                height: auto; 
-                min-height: unset;
-                background: none; 
-                background-color: #000; 
-                padding-top: 0; 
+                display: block; height: auto; min-height: unset;
+                background: none; background-color: #000; padding-top: 0; 
             }
-
-            .mobile-hero-image {
-                display: block;
-                width: 100%;
-                height: auto;
-                display: block;
-            }
-            
+            .mobile-hero-image { display: block; width: 100%; height: auto; }
             .hero-names {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                width: 100%;
-                margin: 0;
+                position: absolute; top: 50%; left: 50%;
+                transform: translate(-50%, -50%); width: 100%; margin: 0;
                 font-size: clamp(1.8rem, 6vw, 3rem); 
             }
 
-            /* 3. ITINERARY ADJUSTMENT */
-            #itinerario {
-                padding-top: 4rem; 
-                min-height: unset; 
-            }
-
+            /* Itinerary */
+            #itinerario { padding-top: 4rem; min-height: unset; }
             .date-title { font-size: 2.2rem; }
             .events-row { flex-direction: column; gap: 2rem; }
 
-            /* 4. Recommendations Accordion */
-            .rec-wrapper {
-                flex-direction: column;
-                align-items: center;
-                gap: 1rem;
-            }
-
+            /* Recommendations */
+            .rec-wrapper { flex-direction: column; align-items: center; gap: 1rem; }
             .category-header {
-                width: 100%;
-                order: unset; 
-                border-bottom: 1px solid #2c446c;
-                padding-bottom: 1rem;
-                margin-bottom: 1rem;
+                width: 100%; order: unset; border-bottom: 1px solid #2c446c;
+                padding-bottom: 1rem; margin-bottom: 1rem;
             }
-
             .cat-title { font-size: 2rem; }
             .cat-icon { width: 80px; margin-bottom: 0.5rem; }
-
-            .rec-content-container {
-                order: unset; 
-                margin-top: 0;
-                margin-bottom: 2rem;
-            }
+            .rec-content-container { order: unset; margin-top: 0; margin-bottom: 2rem; }
             
-            /* 5. RSVP Mobile Stack */
+            /* RSVP */
             #rsvp { justify-content: flex-start; }
-            
             .rsvp-postcard-left, .rsvp-postcard-right {
-                position: relative;
-                width: 80%;
-                left: auto; right: auto; top: auto;
-                transform: none;
-                margin-bottom: 2rem;
+                position: relative; width: 80%; left: auto; right: auto; top: auto;
+                transform: none; margin-bottom: 2rem;
             }
-            
             .rsvp-postcard-left { order: 1; transform: rotate(5deg); margin-bottom: 2rem; }
             .rsvp-content { order: 2; margin-bottom: 3rem; }
             .rsvp-postcard-right { order: 3; transform: rotate(-5deg); margin-top: 2rem; }
@@ -553,7 +522,6 @@
 
     <section id="home">
         <img src="Photos/VIEW_buena.png" alt="Daniela y Alfonso" class="mobile-hero-image">
-        
         <h1 class="hero-names">Daniela y Alfonso</h1>
     </section>
 
@@ -671,10 +639,18 @@
         <img src="Photos/graphicsweb-07.png" alt="Postcard Right" class="rsvp-postcard-right">
         <div class="rsvp-content">
             <h2 class="rsvp-title">RSVP</h2>
-            <form class="rsvp-form">
-                <input type="text" placeholder="NOMBRE COMPLETO" class="rsvp-input">
-                <input type="email" placeholder="E-MAIL" class="rsvp-input">
+            
+            <form class="rsvp-form" id="rsvpForm">
+                <input type="text" name="nombre" placeholder="NOMBRE COMPLETO" class="rsvp-input" required>
+                <input type="email" name="email" placeholder="E-MAIL" class="rsvp-input" required>
+                <input type="tel" name="telefono" placeholder="TELEFONO" class="rsvp-input" required>
+                <input type="number" name="pool_party" placeholder="# PERSONAS POOL PARTY" class="rsvp-input" min="0" required>
+                <input type="number" name="boda_civil" placeholder="# PERSONAS BODA CIVIL" class="rsvp-input" min="0" required>
+                
+                <button type="submit" class="rsvp-button">CONFIRMAR</button>
             </form>
+            
+            <div id="form-message">¡Gracias! Tu confirmación ha sido enviada.</div>
             <div class="rsvp-footer-text">
                 PORFAVOR CONFIRMAR ASISTENCIA ANTES DEL X DE ENERO<br>
                 SI TIENES +1, FAVOR DE ESCRIBIR SU NOMBRE Y CORREO
@@ -703,17 +679,52 @@
         function openCategory(catId) {
             const contents = document.querySelectorAll('.rec-content-container');
             const target = document.getElementById(catId);
-            
             contents.forEach(content => {
                 if (content !== target) {
                     content.classList.remove('active');
                 }
             });
-
             if (target) {
                 target.classList.toggle('active');
             }
         }
+
+        // --- GOOGLE SHEETS CONNECTION SCRIPT ---
+        const form = document.getElementById('rsvpForm');
+        const message = document.getElementById('form-message');
+
+        // REPLACE THIS URL WITH YOUR GOOGLE APPS SCRIPT URL LATER
+        const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_GOES_HERE';
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            
+            // Check if scriptURL is set (don't submit if it's the placeholder)
+            if (scriptURL === 'YOUR_GOOGLE_APPS_SCRIPT_URL_GOES_HERE') {
+                alert("Falta configurar la URL de Google Sheets.");
+                return;
+            }
+
+            const submitButton = form.querySelector('button');
+            submitButton.disabled = true;
+            submitButton.textContent = "ENVIANDO...";
+
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    message.style.display = "block";
+                    form.reset();
+                    submitButton.textContent = "CONFIRMAR";
+                    submitButton.disabled = false;
+                    setTimeout(() => {
+                        message.style.display = "none";
+                    }, 5000);
+                })
+                .catch(error => {
+                    alert('Error!', error.message);
+                    submitButton.disabled = false;
+                    submitButton.textContent = "CONFIRMAR";
+                });
+        });
     </script>
 
 </body>
