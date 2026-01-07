@@ -118,7 +118,6 @@
         #home {
             position: relative;
             width: 100%;
-            /* Desktop Default: Use background image logic */
             height: 100vh;
             background-image: url('Photos/VIEW_buena.png');
             background-size: cover;
@@ -187,6 +186,11 @@
             letter-spacing: 1px;
             line-height: 1.1;
             margin-bottom: 0.5rem;
+        }
+
+        /* NEW: Class for the numbers only */
+        .date-number {
+            font-family: 'Futura', sans-serif;
         }
 
         .events-row {
@@ -309,8 +313,8 @@
             font-family: 'Gelosa Cara', serif;
             font-size: 2rem;
             color: #2c446c;
-            text-decoration: underline; /* CHANGED: Always underlined */
-            text-underline-offset: 5px; /* Adds space between text and underline */
+            text-decoration: underline; 
+            text-underline-offset: 5px; 
             text-transform: uppercase;
             display: block;
             margin-bottom: 0.5rem;
@@ -462,7 +466,7 @@
                 height: auto; 
                 min-height: unset;
                 background: none; 
-                background-color: #000; /* Black bg for seamless vignette blend */
+                background-color: #000; 
                 padding-top: 0; 
             }
 
@@ -556,7 +560,7 @@
     <section id="itinerario">
         <div class="day-block">
             <img src="Graphics/graphicsweb-09.png" alt="Icono Sabado" class="day-graphic">
-            <h2 class="date-title">Sábado, 14 de Feb</h2>
+            <h2 class="date-title">Sábado, <span class="date-number">14</span> de Febrero</h2>
             <div class="event-details">
                 Shabbat + Pool Party
                 <span class="time">4:30 PM</span>
@@ -566,7 +570,7 @@
 
         <div class="day-block">
             <img src="Graphics/graphicsweb-20.png" alt="Icono Domingo" class="day-graphic">
-            <h2 class="date-title">Domingo, 15 de Feb</h2>
+            <h2 class="date-title">Domingo, <span class="date-number">15</span> de Febrero</h2>
             <div class="events-row">
                 <div class="event-col event-details">
                     <span class="time">1:30 PM</span>
