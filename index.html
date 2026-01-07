@@ -41,7 +41,7 @@
         body {
             width: 100%;
             overflow-x: hidden;
-            background-color: #d1c9b8; /* Seamless beige background behind everything */
+            background-color: #d1c9b8; 
         }
 
         /* --- 3. NAVIGATION --- */
@@ -132,7 +132,6 @@
             align-items: center;
         }
 
-        /* The actual image tag is hidden on desktop */
         .mobile-hero-image {
             display: none;
         }
@@ -147,13 +146,12 @@
             font-weight: normal;
             margin-top: 10vh;
             padding: 0 1rem;
-            z-index: 2; /* Ensure text sits on top */
+            z-index: 2; 
         }
 
 
         /* --- 5. SECTION: ITINERARIO --- */
         #itinerario {
-            /* Removed min-height 100vh to allow natural flow from image */
             min-height: 100vh;
             width: 100%;
             background-color: #d1c9b8; 
@@ -311,13 +309,14 @@
             font-family: 'Gelosa Cara', serif;
             font-size: 2rem;
             color: #2c446c;
-            text-decoration: none;
+            text-decoration: underline; /* CHANGED: Always underlined */
+            text-underline-offset: 5px; /* Adds space between text and underline */
             text-transform: uppercase;
             display: block;
             margin-bottom: 0.5rem;
         }
 
-        .rec-link:hover { text-decoration: underline; }
+        .rec-link:hover { opacity: 0.7; }
 
         .rec-note {
             font-family: 'Futura', sans-serif;
@@ -420,12 +419,13 @@
         }
 
 
-        /* --- MOBILE RESPONSIVENESS (UPDATED) --- */
+        /* --- MOBILE RESPONSIVENESS --- */
         @media (max-width: 900px) {
             
             /* 1. Hamburger Menu Logic */
             .nav-container {
                 justify-content: flex-end; 
+                position: relative;
             }
 
             .hamburger { 
@@ -456,27 +456,23 @@
 
             .nav-link { font-size: 1.8rem; }
 
-            /* 2. HERO SECTION FIX FOR MOBILE 
-               This is the key change to remove gray bars and push content up.
-            */
+            /* 2. HERO SECTION FIX FOR MOBILE */
             #home {
-                display: block; /* Remove flexbox centering */
-                height: auto;   /* Auto height based on image */
+                display: block; 
+                height: auto; 
                 min-height: unset;
-                background: none; /* Disable background image */
-                background-color: #000; /* Black background to blend with vignette if needed */
-                padding-top: 0; /* Ensure no padding pushes it down */
+                background: none; 
+                background-color: #000; /* Black bg for seamless vignette blend */
+                padding-top: 0; 
             }
 
-            /* Show the actual image tag on mobile */
             .mobile-hero-image {
                 display: block;
                 width: 100%;
                 height: auto;
-                display: block; /* Removes bottom space of inline elements */
+                display: block;
             }
             
-            /* Center the text over the image */
             .hero-names {
                 position: absolute;
                 top: 50%;
@@ -489,9 +485,8 @@
 
             /* 3. ITINERARY ADJUSTMENT */
             #itinerario {
-                /* Reduced top padding so it sits closer to image */
                 padding-top: 4rem; 
-                min-height: unset; /* Allow it to be naturally sized */
+                min-height: unset; 
             }
 
             .date-title { font-size: 2.2rem; }
@@ -641,16 +636,25 @@
                 <div class="rec-item">
                     <a href="https://auberge.com/chileno-bay/dine/comal/" target="_blank" class="rec-link">Comal</a>
                 </div>
+                <div class="rec-item">
+                    <a href="https://www.montage.com/loscabos/dining/mezcal/" target="_blank" class="rec-link">Mezcal</a>
+                </div>
             </div>
             
             <div class="category-header" onclick="openCategory('actividades')">
-                <img src="Graphics/graphicsweb-28.png" alt="Actividades" class="cat-icon">
-                <h3 class="cat-title">Actividades<br>y Salir</h3>
+                <img src="Graphics/graphicsweb-28.png" alt="Drinks" class="cat-icon">
+                <h3 class="cat-title">Drinks</h3>
             </div>
 
             <div id="actividades" class="rec-content-container">
                 <div class="rec-item">
-                    <div class="rec-note">Próximamente...</div>
+                    <a href="https://www.rosewoodhotels.com/en/las-ventanas-los-cabos/dining/la-botica" target="_blank" class="rec-link">La Botica Speakeasy</a>
+                </div>
+                <div class="rec-item">
+                    <a href="https://www.opentable.com/r/the-rooftop-at-the-cape-a-thompson-hotel-cabo-san-lucas" target="_blank" class="rec-link">The Rooftop at The Cape a Thompson Hotel</a>
+                </div>
+                <div class="rec-item">
+                    <a href="https://www.craniareclaim.com/" target="_blank" class="rec-link">Crania (Nightclub)</a>
                 </div>
             </div>
 
