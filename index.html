@@ -69,7 +69,7 @@
 
         .nav-links-wrapper {
             display: flex;
-            gap: 5vw;
+            gap: 4vw; /* Slightly reduced gap to fit new item */
             transition: all 0.3s ease;
         }
 
@@ -77,7 +77,7 @@
             text-decoration: none;
             color: #efe9dc; 
             font-family: 'Gelosa Cara', sans-serif;
-            font-size: 2.5rem; 
+            font-size: 2.2rem; /* Slightly smaller to fit "Boda Civil" */
             text-transform: uppercase;
             letter-spacing: 2px;
             transition: color 0.3s ease;
@@ -147,6 +147,54 @@
             z-index: 2; 
         }
 
+        /* --- 4.5 SECTION: BODA CIVIL (NEW) --- */
+        #boda-civil {
+            min-height: 100vh;
+            width: 100%;
+            background-color: #d1c9b8;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 8rem 1rem 4rem 1rem;
+        }
+
+        .invite-preview {
+            max-width: 90%;
+            max-height: 80vh;
+            width: auto;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .invite-preview:hover {
+            transform: scale(1.02);
+        }
+
+        /* Modal for full invite */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+        }
+
+        .modal.active {
+            display: flex;
+        }
 
         /* --- 5. SECTION: ITINERARIO --- */
         #itinerario {
@@ -221,6 +269,7 @@
         .time {
             font-size: 1rem;
             margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
             display: block;
             font-weight: bold; 
         }
@@ -411,7 +460,6 @@
         .rsvp-input::placeholder { color: #2c446c; opacity: 0.7; }
         .rsvp-input:focus { background-color: rgba(255,255,255,0.1); }
 
-        /* Button Styling */
         .rsvp-button {
             width: 100%;
             padding: 15px;
@@ -432,13 +480,12 @@
             color: #2c446c;
         }
         
-        /* Message styling */
         #form-message {
             margin-top: 1rem;
             font-family: 'Futura', sans-serif;
             color: #2c446c;
             font-size: 1.1rem;
-            display: none; /* Hidden by default */
+            display: none;
         }
 
         .rsvp-footer-text {
@@ -453,8 +500,6 @@
 
         /* --- MOBILE RESPONSIVENESS --- */
         @media (max-width: 900px) {
-            
-            /* Hamburger Logic */
             .nav-container { justify-content: flex-end; position: relative; }
             .hamburger { display: block; margin-left: auto; }
             .nav-links-wrapper {
@@ -467,7 +512,6 @@
             .nav-links-wrapper.active { max-height: 500px; opacity: 1; }
             .nav-link { font-size: 1.8rem; }
 
-            /* Hero Fix */
             #home {
                 display: block; height: auto; min-height: unset;
                 background: none; background-color: #000; padding-top: 0; 
@@ -479,12 +523,10 @@
                 font-size: clamp(1.8rem, 6vw, 3rem); 
             }
 
-            /* Itinerary */
             #itinerario { padding-top: 4rem; min-height: unset; }
             .date-title { font-size: 2.2rem; }
             .events-row { flex-direction: column; gap: 2rem; }
 
-            /* Recommendations */
             .rec-wrapper { flex-direction: column; align-items: center; gap: 1rem; }
             .category-header {
                 width: 100%; order: unset; border-bottom: 1px solid #2c446c;
@@ -494,7 +536,6 @@
             .cat-icon { width: 80px; margin-bottom: 0.5rem; }
             .rec-content-container { order: unset; margin-top: 0; margin-bottom: 2rem; }
             
-            /* RSVP */
             #rsvp { justify-content: flex-start; }
             .rsvp-postcard-left, .rsvp-postcard-right {
                 position: relative; width: 80%; left: auto; right: auto; top: auto;
@@ -513,6 +554,7 @@
             <button class="hamburger" onclick="toggleMenu()">☰</button>
             <div class="nav-links-wrapper" id="navMenu">
                 <a href="#home" class="nav-link" onclick="toggleMenu()">Home</a>
+                <a href="#boda-civil" class="nav-link" onclick="toggleMenu()">Boda Civil</a>
                 <a href="#itinerario" class="nav-link" onclick="toggleMenu()">Itinerario</a>
                 <a href="#recomendaciones" class="nav-link" onclick="toggleMenu()">Recomendaciones</a>
                 <a href="#rsvp" class="nav-link" onclick="toggleMenu()">RSVP</a>
@@ -525,20 +567,29 @@
         <h1 class="hero-names">Daniela y Alfonso</h1>
     </section>
 
+    <section id="boda-civil">
+        <img src="Photos/Invite.png" alt="Boda Civil Invite" class="invite-preview" onclick="toggleModal(true)">
+    </section>
+
+    <div id="inviteModal" class="modal" onclick="toggleModal(false)">
+        <img src="Photos/inviteDA.png" alt="Boda Civil Full Invite" class="modal-content">
+    </div>
+
     <section id="itinerario">
         <div class="day-block">
             <img src="Graphics/graphicsweb-09.png" alt="Icono Sabado" class="day-graphic">
-            <h2 class="date-title">Sábado, <span class="date-number">14</span> de Febrero</h2>
+            <h2 class="date-title">Sábado, <span class="date-number">14</span> de Feb</h2>
             <div class="event-details">
-                Shabbat + Pool Party
                 <span class="time">4:30 PM</span>
+                Shabbat + Pool Party<br>
+                Villa #111 Punta Ballena<br>
                 <a href="https://maps.app.goo.gl/tDebgsdqwZc1uRaM8" target="_blank" class="maps-link">Google Maps</a>
             </div>
         </div>
 
         <div class="day-block">
             <img src="Graphics/graphicsweb-20.png" alt="Icono Domingo" class="day-graphic">
-            <h2 class="date-title">Domingo, <span class="date-number">15</span> de Febrero</h2>
+            <h2 class="date-title">Domingo, <span class="date-number">15</span> de Feb</h2>
             <div class="events-row">
                 <div class="event-col event-details">
                     <span class="time">1:30 PM</span>
@@ -639,21 +690,17 @@
         <img src="Photos/graphicsweb-07.png" alt="Postcard Right" class="rsvp-postcard-right">
         <div class="rsvp-content">
             <h2 class="rsvp-title">RSVP</h2>
-            
             <form class="rsvp-form" id="rsvpForm">
                 <input type="text" name="nombre" placeholder="NOMBRE COMPLETO" class="rsvp-input" required>
                 <input type="email" name="email" placeholder="E-MAIL" class="rsvp-input" required>
                 <input type="tel" name="telefono" placeholder="TELEFONO" class="rsvp-input" required>
                 <input type="number" name="pool_party" placeholder="# PERSONAS POOL PARTY" class="rsvp-input" min="0" required>
                 <input type="number" name="boda_civil" placeholder="# PERSONAS BODA CIVIL" class="rsvp-input" min="0" required>
-                
                 <button type="submit" class="rsvp-button">CONFIRMAR</button>
             </form>
-            
             <div id="form-message">¡Gracias! Tu confirmación ha sido enviada.</div>
             <div class="rsvp-footer-text">
-                PORFAVOR CONFIRMAR ASISTENCIA ANTES DEL X DE ENERO<br>
-                SI TIENES +1, FAVOR DE ESCRIBIR SU NOMBRE Y CORREO
+                PORFAVOR CONFIRMAR ASISTENCIA ANTES DEL 20 DE ENERO<br>
             </div>
         </div>
     </section>
@@ -676,6 +723,16 @@
             navMenu.classList.toggle('active');
         }
 
+        // Modal Functionality
+        function toggleModal(show) {
+            const modal = document.getElementById('inviteModal');
+            if (show) {
+                modal.classList.add('active');
+            } else {
+                modal.classList.remove('active');
+            }
+        }
+
         function openCategory(catId) {
             const contents = document.querySelectorAll('.rec-content-container');
             const target = document.getElementById(catId);
@@ -689,22 +746,16 @@
             }
         }
 
-        // --- GOOGLE SHEETS CONNECTION SCRIPT ---
         const form = document.getElementById('rsvpForm');
         const message = document.getElementById('form-message');
-
-        // REPLACE THIS URL WITH YOUR GOOGLE APPS SCRIPT URL LATER
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbwQbWV6sog5GEXUG9kFMKH8a5zC_Ho-HvggMInUYFQs7QJCE-BhKR7yofGVHmjiS8FD/exec';
+        const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_GOES_HERE';
 
         form.addEventListener('submit', e => {
             e.preventDefault();
-            
-            // Check if scriptURL is set (don't submit if it's the placeholder)
             if (scriptURL === 'YOUR_GOOGLE_APPS_SCRIPT_URL_GOES_HERE') {
                 alert("Falta configurar la URL de Google Sheets.");
                 return;
             }
-
             const submitButton = form.querySelector('button');
             submitButton.disabled = true;
             submitButton.textContent = "ENVIANDO...";
@@ -715,9 +766,7 @@
                     form.reset();
                     submitButton.textContent = "CONFIRMAR";
                     submitButton.disabled = false;
-                    setTimeout(() => {
-                        message.style.display = "none";
-                    }, 5000);
+                    setTimeout(() => { message.style.display = "none"; }, 5000);
                 })
                 .catch(error => {
                     alert('Error!', error.message);
