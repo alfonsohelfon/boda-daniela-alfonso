@@ -149,14 +149,12 @@
 
         /* --- 4.5 SECTION: BODA CIVIL --- */
         #boda-civil {
-            /* REMOVED min-height: 100vh to fix large gap */
             width: 100%;
             background-color: #d1c9b8;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            /* REDUCED padding to remove gaps */
             padding: 4rem 1rem 2rem 1rem;
         }
 
@@ -237,8 +235,8 @@
 
         .date-number {
             font-family: 'Futura', sans-serif;
-            font-stretch: condensed; /* Makes it condensed */
-            font-weight: 500;        /* Matches Medium */
+            font-stretch: condensed; 
+            font-weight: 500;        
         }
 
         .events-row {
@@ -261,8 +259,8 @@
 
         .event-details {
             font-family: 'Futura', sans-serif;
-            font-stretch: condensed; /* Makes it condensed */
-            font-weight: 500;        /* Matches Medium */
+            font-stretch: condensed; 
+            font-weight: 500;        
             color: #fdfbf8; 
             font-size: 1rem;
             line-height: 1.4;
@@ -275,7 +273,7 @@
             margin-top: 0.5rem;
             margin-bottom: 0.5rem;
             display: block;
-            font-weight: bold; /* Bold overrides normal weight for emphasis */
+            font-weight: bold; 
             font-stretch: condensed;
         }
 
@@ -300,6 +298,17 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+        }
+
+        /* NEW: Main Section Title */
+        .section-main-title {
+            font-family: 'Gelosa Cara', serif;
+            color: #2c446c;
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 4rem; /* Adds space before the icons */
+            letter-spacing: 2px;
         }
 
         .rec-wrapper {
@@ -376,8 +385,8 @@
 
         .rec-note {
             font-family: 'Futura', sans-serif;
-            font-stretch: condensed; /* Makes it condensed */
-            font-weight: 500;        /* Matches Medium */
+            font-stretch: condensed; 
+            font-weight: 500;       
             color: #fdfbf8; 
             font-size: 1.1rem;
             letter-spacing: 0.5px;
@@ -387,8 +396,8 @@
         .rec-footer-note {
             margin-top: 4rem;
             font-family: 'Futura', sans-serif;
-            font-stretch: condensed; /* Makes it condensed */
-            font-weight: 500;        /* Matches Medium */
+            font-stretch: condensed; 
+            font-weight: 500;       
             color: #2c446c;
             font-size: 0.9rem;
             font-style: italic;
@@ -461,8 +470,8 @@
             border: 1px solid #2c446c;
             color: #2c446c;
             font-family: 'Futura', sans-serif;
-            font-stretch: condensed; /* Makes it condensed */
-            font-weight: 500;        /* Matches Medium */
+            font-stretch: condensed; 
+            font-weight: 500;        
             font-size: 1rem;
             text-transform: uppercase;
             outline: none;
@@ -503,8 +512,8 @@
             margin-top: 3rem;
             color: #2c446c;
             font-family: 'Futura', sans-serif;
-            font-stretch: condensed; /* Makes it condensed */
-            font-weight: 500;        /* Matches Medium */
+            font-stretch: condensed; 
+            font-weight: 500;       
             font-size: 0.8rem;
             line-height: 1.5;
             text-transform: uppercase;
@@ -539,6 +548,12 @@
             #itinerario { padding-top: 4rem; min-height: unset; }
             .date-title { font-size: 2.2rem; }
             .events-row { flex-direction: column; gap: 2rem; }
+
+            /* Mobile Header Adjustments */
+            .section-main-title {
+                font-size: 2.5rem; 
+                margin-bottom: 2rem;
+            }
 
             .rec-wrapper { flex-direction: column; align-items: center; gap: 1rem; }
             .category-header {
@@ -622,6 +637,8 @@
 
     <section id="recomendaciones">
         
+        <h2 class="section-main-title">RECOMENDACIONES</h2>
+
         <div class="rec-wrapper">
             
             <div class="category-header" onclick="openCategory('hospedaje')">
