@@ -20,9 +20,13 @@
             font-style: normal;
         }
 
+        /* MOBILE FONT FIX: 
+           Added local('Futura') so iPhones use their built-in font.
+           Renamed family to 'FuturaCustom' to avoid conflicts.
+        */
         @font-face {
-            font-family: 'Futura';
-            src: url('Fonts/Futura.ttc') format('truetype');
+            font-family: 'FuturaCustom';
+            src: local('Futura'), url('Fonts/Futura.ttc') format('truetype');
             font-weight: normal;
             font-style: normal;
         }
@@ -234,7 +238,8 @@
         }
 
         .date-number {
-            font-family: 'Futura', sans-serif;
+            /* Updated to use the fallback-friendly name */
+            font-family: 'FuturaCustom', 'Futura', sans-serif;
             font-stretch: condensed; 
             font-weight: 500;        
         }
@@ -258,7 +263,8 @@
         }
 
         .event-details {
-            font-family: 'Futura', sans-serif;
+            /* Updated to use the fallback-friendly name */
+            font-family: 'FuturaCustom', 'Futura', sans-serif;
             font-stretch: condensed; 
             font-weight: 500;        
             color: #fdfbf8; 
@@ -266,6 +272,21 @@
             line-height: 1.4;
             letter-spacing: 1px;
             text-transform: uppercase;
+        }
+        
+        /* New Style for the centered dress code */
+        .dress-code-centered {
+            /* Updated to use the fallback-friendly name */
+            font-family: 'FuturaCustom', 'Futura', sans-serif;
+            font-stretch: condensed; 
+            font-weight: 500; 
+            color: #fdfbf8;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 2rem;
+            text-align: center;
+            width: 100%;
         }
 
         .time {
@@ -383,7 +404,8 @@
         .rec-link:hover { opacity: 0.7; }
 
         .rec-note {
-            font-family: 'Futura', sans-serif;
+            /* Updated to use the fallback-friendly name */
+            font-family: 'FuturaCustom', 'Futura', sans-serif;
             font-stretch: condensed; 
             font-weight: 500;       
             color: #fdfbf8; 
@@ -394,7 +416,8 @@
         
         .rec-footer-note {
             margin-top: 4rem;
-            font-family: 'Futura', sans-serif;
+            /* Updated to use the fallback-friendly name */
+            font-family: 'FuturaCustom', 'Futura', sans-serif;
             font-stretch: condensed; 
             font-weight: 500;       
             color: #2c446c;
@@ -468,7 +491,8 @@
             background-color: transparent;
             border: 1px solid #2c446c;
             color: #2c446c;
-            font-family: 'Futura', sans-serif;
+            /* Updated to use the fallback-friendly name */
+            font-family: 'FuturaCustom', 'Futura', sans-serif;
             font-stretch: condensed; 
             font-weight: 500;        
             font-size: 1rem;
@@ -501,7 +525,8 @@
         
         #form-message {
             margin-top: 1rem;
-            font-family: 'Futura', sans-serif;
+            /* Updated to use the fallback-friendly name */
+            font-family: 'FuturaCustom', 'Futura', sans-serif;
             color: #2c446c;
             font-size: 1.1rem;
             display: none;
@@ -510,7 +535,8 @@
         .rsvp-footer-text {
             margin-top: 3rem;
             color: #2c446c;
-            font-family: 'Futura', sans-serif;
+            /* Updated to use the fallback-friendly name */
+            font-family: 'FuturaCustom', 'Futura', sans-serif;
             font-stretch: condensed; 
             font-weight: 500;       
             font-size: 0.8rem;
@@ -628,10 +654,10 @@
                     Recepción y Banquete:<br>
                     Toro Latin Kitchen<br>
                     <a href="https://maps.app.goo.gl/PxmWHt2mYsExreNw5" target="_blank" class="maps-link">Google Maps</a>
-                    
-                    <div style="margin-top: 1.5rem;">Dress Code Boda Civil: Cóctel</div>
                 </div>
             </div>
+            
+            <div class="dress-code-centered">Dress Code Boda Civil: Cóctel</div>
         </div>
     </section>
 
@@ -768,39 +794,4 @@
             const target = document.getElementById(catId);
             contents.forEach(content => {
                 if (content !== target) {
-                    content.classList.remove('active');
-                }
-            });
-            if (target) {
-                target.classList.toggle('active');
-            }
-        }
-
-        const form = document.getElementById('rsvpForm');
-        const message = document.getElementById('form-message');
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbwQbWV6sog5GEXUG9kFMKH8a5zC_Ho-HvggMInUYFQs7QJCE-BhKR7yofGVHmjiS8FD/exec';
-
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-            const submitButton = form.querySelector('button');
-            submitButton.disabled = true;
-            submitButton.textContent = "ENVIANDO...";
-
-            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-                .then(response => {
-                    message.style.display = "block";
-                    form.reset();
-                    submitButton.textContent = "CONFIRMAR";
-                    submitButton.disabled = false;
-                    setTimeout(() => { message.style.display = "none"; }, 5000);
-                })
-                .catch(error => {
-                    alert('Error!', error.message);
-                    submitButton.disabled = false;
-                    submitButton.textContent = "CONFIRMAR";
-                });
-        });
-    </script>
-
-</body>
-</html>
+                    content.classList.
