@@ -20,10 +20,7 @@
             font-style: normal;
         }
 
-        /* MOBILE FONT FIX: 
-           Added local('Futura') so iPhones use their built-in font.
-           Renamed family to 'FuturaCustom' to avoid conflicts.
-        */
+        /* MOBILE FONT FIX */
         @font-face {
             font-family: 'FuturaCustom';
             src: local('Futura'), url('Fonts/Futura.ttc') format('truetype');
@@ -238,7 +235,6 @@
         }
 
         .date-number {
-            /* Updated to use the fallback-friendly name */
             font-family: 'FuturaCustom', 'Futura', sans-serif;
             font-stretch: condensed; 
             font-weight: 500;        
@@ -263,7 +259,6 @@
         }
 
         .event-details {
-            /* Updated to use the fallback-friendly name */
             font-family: 'FuturaCustom', 'Futura', sans-serif;
             font-stretch: condensed; 
             font-weight: 500;        
@@ -274,9 +269,7 @@
             text-transform: uppercase;
         }
         
-        /* New Style for the centered dress code */
         .dress-code-centered {
-            /* Updated to use the fallback-friendly name */
             font-family: 'FuturaCustom', 'Futura', sans-serif;
             font-stretch: condensed; 
             font-weight: 500; 
@@ -404,7 +397,6 @@
         .rec-link:hover { opacity: 0.7; }
 
         .rec-note {
-            /* Updated to use the fallback-friendly name */
             font-family: 'FuturaCustom', 'Futura', sans-serif;
             font-stretch: condensed; 
             font-weight: 500;       
@@ -416,7 +408,6 @@
         
         .rec-footer-note {
             margin-top: 4rem;
-            /* Updated to use the fallback-friendly name */
             font-family: 'FuturaCustom', 'Futura', sans-serif;
             font-stretch: condensed; 
             font-weight: 500;       
@@ -491,7 +482,6 @@
             background-color: transparent;
             border: 1px solid #2c446c;
             color: #2c446c;
-            /* Updated to use the fallback-friendly name */
             font-family: 'FuturaCustom', 'Futura', sans-serif;
             font-stretch: condensed; 
             font-weight: 500;        
@@ -525,7 +515,6 @@
         
         #form-message {
             margin-top: 1rem;
-            /* Updated to use the fallback-friendly name */
             font-family: 'FuturaCustom', 'Futura', sans-serif;
             color: #2c446c;
             font-size: 1.1rem;
@@ -535,7 +524,6 @@
         .rsvp-footer-text {
             margin-top: 3rem;
             color: #2c446c;
-            /* Updated to use the fallback-friendly name */
             font-family: 'FuturaCustom', 'Futura', sans-serif;
             font-stretch: condensed; 
             font-weight: 500;       
@@ -762,36 +750,91 @@
     </section>
 
     <script>
-        const navbar = document.getElementById('navbar');
-        const homeSection = document.getElementById('home');
-        const navMenu = document.getElementById('navMenu');
+        // Wait for elements to load to avoid crashes
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // --- Global Variables (Safe Selection) ---
+            const navbar = document.getElementById('navbar');
+            const homeSection = document.getElementById('home');
+            const navMenu = document.getElementById('navMenu');
 
-        window.addEventListener('scroll', () => {
-            const homeBottom = homeSection.offsetHeight - 50; 
-            if (window.scrollY > homeBottom) {
-                navbar.classList.add('dark-mode');
-            } else {
-                navbar.classList.remove('dark-mode');
+            // --- Scroll Logic ---
+            if (navbar && homeSection) {
+                window.addEventListener('scroll', () => {
+                    const homeBottom = homeSection.offsetHeight - 50; 
+                    if (window.scrollY > homeBottom) {
+                        navbar.classList.add('dark-mode');
+                    } else {
+                        navbar.classList.remove('dark-mode');
+                    }
+                });
+            }
+
+            // --- Button Functions (Attached to Window for global access) ---
+            window.toggleMenu = function() {
+                if (navMenu) {
+                    navMenu.classList.toggle('active');
+                }
+            };
+
+            window.toggleModal = function(show) {
+                const modal = document.getElementById('inviteModal');
+                if (modal) {
+                    if (show) modal.classList.add('active');
+                    else modal.classList.remove('active');
+                }
+            };
+
+            window.openCategory = function(catId) {
+                const contents = document.querySelectorAll('.rec-content-container');
+                const target = document.getElementById(catId);
+                
+                contents.forEach(content => {
+                    if (content !== target) {
+                        content.classList.remove('active');
+                    }
+                });
+
+                if (target) {
+                    target.classList.toggle('active');
+                }
+            };
+
+            // --- Form Logic ---
+            const form = document.getElementById('rsvpForm');
+            const message = document.getElementById('form-message');
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbwQbWV6sog5GEXUG9kFMKH8a5zC_Ho-HvggMInUYFQs7QJCE-BhKR7yofGVHmjiS8FD/exec';
+
+            if (form) {
+                form.addEventListener('submit', e => {
+                    e.preventDefault();
+                    const submitButton = form.querySelector('button');
+                    if (submitButton) {
+                        submitButton.disabled = true;
+                        submitButton.textContent = "ENVIANDO...";
+                    }
+
+                    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                        .then(response => {
+                            if (message) message.style.display = "block";
+                            form.reset();
+                            if (submitButton) {
+                                submitButton.textContent = "CONFIRMAR";
+                                submitButton.disabled = false;
+                            }
+                            setTimeout(() => { if (message) message.style.display = "none"; }, 5000);
+                        })
+                        .catch(error => {
+                            alert('Error: ' + error.message);
+                            if (submitButton) {
+                                submitButton.disabled = false;
+                                submitButton.textContent = "CONFIRMAR";
+                            }
+                        });
+                });
             }
         });
+    </script>
 
-        function toggleMenu() {
-            navMenu.classList.toggle('active');
-        }
-
-        // Modal Functionality
-        function toggleModal(show) {
-            const modal = document.getElementById('inviteModal');
-            if (show) {
-                modal.classList.add('active');
-            } else {
-                modal.classList.remove('active');
-            }
-        }
-
-        function openCategory(catId) {
-            const contents = document.querySelectorAll('.rec-content-container');
-            const target = document.getElementById(catId);
-            contents.forEach(content => {
-                if (content !== target) {
-                    content.classList.
+</body>
+</html>
