@@ -419,118 +419,6 @@
             display: inline-block;
         }
 
-        /* --- 7. SECTION: RSVP --- */
-        #rsvp {
-            min-height: 100vh;
-            width: 100%;
-            background-color: #d1c9b8;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 8rem 1rem 4rem 1rem;
-            overflow: hidden;
-        }
-
-        .rsvp-postcard-left {
-            position: absolute;
-            left: -5%;
-            top: 15%;
-            width: 40vw;
-            max-width: 550px;
-            transform: rotate(10deg);
-            z-index: 1;
-        }
-
-        .rsvp-postcard-right {
-            position: absolute;
-            right: -5%;
-            top: 20%;
-            width: 40vw;
-            max-width: 550px;
-            transform: rotate(-10deg);
-            z-index: 1;
-        }
-
-        .rsvp-content {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            max-width: 500px;
-            text-align: center;
-        }
-
-        .rsvp-title {
-            font-family: 'Gelosa Cara', serif;
-            font-size: 3rem;
-            color: #2c446c;
-            margin-bottom: 2rem;
-            text-transform: uppercase;
-        }
-
-        .rsvp-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            width: 100%;
-        }
-
-        .rsvp-input {
-            width: 100%;
-            padding: 15px;
-            background-color: transparent;
-            border: 1px solid #2c446c;
-            color: #2c446c;
-            font-family: 'FuturaCustom', 'Futura', sans-serif;
-            font-stretch: condensed; 
-            font-weight: 500;        
-            font-size: 1rem;
-            text-transform: uppercase;
-            outline: none;
-        }
-        
-        .rsvp-input::placeholder { color: #2c446c; opacity: 0.7; }
-        .rsvp-input:focus { background-color: rgba(255,255,255,0.1); }
-
-        .rsvp-button {
-            width: 100%;
-            padding: 15px;
-            background-color: #2c446c;
-            color: #efe9dc;
-            border: 1px solid #2c446c;
-            font-family: 'Gelosa Cara', serif;
-            font-size: 1.5rem;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            letter-spacing: 1px;
-            margin-top: 1rem;
-        }
-
-        .rsvp-button:hover {
-            background-color: transparent;
-            color: #2c446c;
-        }
-        
-        #form-message {
-            margin-top: 1rem;
-            font-family: 'FuturaCustom', 'Futura', sans-serif;
-            color: #2c446c;
-            font-size: 1.1rem;
-            display: none;
-        }
-
-        .rsvp-footer-text {
-            margin-top: 3rem;
-            color: #2c446c;
-            font-family: 'FuturaCustom', 'Futura', sans-serif;
-            font-stretch: condensed; 
-            font-weight: 500;       
-            font-size: 0.8rem;
-            line-height: 1.5;
-            text-transform: uppercase;
-        }
 
 
         /* --- MOBILE RESPONSIVENESS --- */
@@ -576,14 +464,6 @@
             .cat-icon { width: 80px; margin-bottom: 0.5rem; }
             .rec-content-container { order: unset; margin-top: 0; margin-bottom: 2rem; }
             
-            #rsvp { justify-content: flex-start; }
-            .rsvp-postcard-left, .rsvp-postcard-right {
-                position: relative; width: 80%; left: auto; right: auto; top: auto;
-                transform: none; margin-bottom: 2rem;
-            }
-            .rsvp-postcard-left { order: 1; transform: rotate(5deg); margin-bottom: 2rem; }
-            .rsvp-content { order: 2; margin-bottom: 3rem; }
-            .rsvp-postcard-right { order: 3; transform: rotate(-5deg); margin-top: 2rem; }
         }
     </style>
 </head>
@@ -597,7 +477,6 @@
                 <a href="#boda-civil" class="nav-link" onclick="toggleMenu()">Boda Civil</a>
                 <a href="#itinerario" class="nav-link" onclick="toggleMenu()">Itinerario</a>
                 <a href="#recomendaciones" class="nav-link" onclick="toggleMenu()">Recomendaciones</a>
-                <a href="#rsvp" class="nav-link" onclick="toggleMenu()">RSVP</a>
             </div>
         </div>
     </nav>
@@ -729,25 +608,6 @@
 
     </section>
 
-    <section id="rsvp">
-        <img src="Photos/graphicsweb-08.png" alt="Postcard Left" class="rsvp-postcard-left">
-        <img src="Photos/graphicsweb-07.png" alt="Postcard Right" class="rsvp-postcard-right">
-        <div class="rsvp-content">
-            <h2 class="rsvp-title">RSVP</h2>
-            <form class="rsvp-form" id="rsvpForm">
-                <input type="text" name="nombre" placeholder="NOMBRE COMPLETO" class="rsvp-input" required>
-                <input type="email" name="email" placeholder="E-MAIL" class="rsvp-input" required>
-                <input type="tel" name="telefono" placeholder="TELEFONO" class="rsvp-input" required>
-                <input type="number" name="pool_party" placeholder="# PERSONAS POOL PARTY" class="rsvp-input" min="0" required>
-                <input type="number" name="boda_civil" placeholder="# PERSONAS BODA CIVIL" class="rsvp-input" min="0" required>
-                <button type="submit" class="rsvp-button">CONFIRMAR</button>
-            </form>
-            <div id="form-message">¡Gracias! Tu confirmación ha sido enviada.</div>
-            <div class="rsvp-footer-text">
-                PORFAVOR CONFIRMAR ASISTENCIA ANTES DEL 20 DE ENERO<br>
-            </div>
-        </div>
-    </section>
 
     <script>
         // Wait for elements to load to avoid crashes
@@ -800,39 +660,6 @@
                 }
             };
 
-            // --- Form Logic ---
-            const form = document.getElementById('rsvpForm');
-            const message = document.getElementById('form-message');
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbwQbWV6sog5GEXUG9kFMKH8a5zC_Ho-HvggMInUYFQs7QJCE-BhKR7yofGVHmjiS8FD/exec';
-
-            if (form) {
-                form.addEventListener('submit', e => {
-                    e.preventDefault();
-                    const submitButton = form.querySelector('button');
-                    if (submitButton) {
-                        submitButton.disabled = true;
-                        submitButton.textContent = "ENVIANDO...";
-                    }
-
-                    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-                        .then(response => {
-                            if (message) message.style.display = "block";
-                            form.reset();
-                            if (submitButton) {
-                                submitButton.textContent = "CONFIRMAR";
-                                submitButton.disabled = false;
-                            }
-                            setTimeout(() => { if (message) message.style.display = "none"; }, 5000);
-                        })
-                        .catch(error => {
-                            alert('Error: ' + error.message);
-                            if (submitButton) {
-                                submitButton.disabled = false;
-                                submitButton.textContent = "CONFIRMAR";
-                            }
-                        });
-                });
-            }
         });
     </script>
 
